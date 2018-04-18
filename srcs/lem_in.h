@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/18 22:56:54 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/18 23:57:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct		s_ant_hill
 	t_list			*rooms;
 	t_list			*tubes;
 }					t_ant_hill;
+
+int					read_data(t_ant_hill *ant_hill, char *line);
+int					check_ant_hill(t_ant_hill *ant_hill);
 
 #endif
 

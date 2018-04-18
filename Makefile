@@ -6,13 +6,14 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/18 13:29:41 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/18 23:57:42 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
 
 SRCS	=	srcs/main.c \
+			srcs/read_check.c \
 			GNL/get_next_line.c \
 
 OBJS	=	$(SRCS:.c=.o)
