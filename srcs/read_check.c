@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 00:11:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/19 00:12:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int	read2(t_ant_hill *ant_hill, char *line)
 
 int			read_data(t_ant_hill *ant_hill, char *line)
 {
-
 	if (!(read1(ant_hill, line)))
 		return (0);
 	if (!(read2(ant_hill, line)))
