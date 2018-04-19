@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 00:00:11 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/19 11:39:48 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ static void		lem_in(t_ant_hill *ant_hill)
 	//TODO : Obvious...
 }
 
+void	printlists(t_ant_hill *ant_hill)
+{
+	while (ant_hill->rooms)
+	{
+		ft_printf("%s\n", ((char*)ant_hill->rooms->content));
+		ant_hill->rooms = ant_hill->rooms->next;
+	}
+	while (ant_hill->tubes)
+	{
+		ft_printf("%s\n", ((char*)ant_hill->tubes->content));
+		ant_hill->tubes = ant_hill->tubes->next;
+	}
+}
+
 int			main(void)
 {
 	char			**line;
@@ -67,6 +81,7 @@ int			main(void)
 		lem_in(ant_hill);
 	else
 		ft_printf("ERROR\n");
+	printlists(ant_hill);
 	del_ant_hill(ant_hill);
 	return (0);
 }
