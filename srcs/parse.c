@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 22:03:55 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 00:24:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char		**parse_rooms_bis(char *line, char **tab)
+static char	**parse_rooms_bis(char *line, char **tab)
 {
 	int		n;
 	int		i;
@@ -39,7 +39,7 @@ static char		**parse_rooms_bis(char *line, char **tab)
 	return (tab);
 }
 
-char			**parse_rooms(char *line)
+char		**parse_rooms(char *line)
 {
 	char	**tab;
 
@@ -48,7 +48,7 @@ char			**parse_rooms(char *line)
 	return (parse_rooms_bis(line, tab));
 }
 
-static char		**parse_tubes_bis(char *line, char **tab)
+static char	**parse_tubes_bis(char *line, char **tab)
 {
 	int		n;
 	int		i;
@@ -75,7 +75,7 @@ static char		**parse_tubes_bis(char *line, char **tab)
 	return (tab);
 }
 
-char			**parse_tubes(char *line)
+char		**parse_tubes(char *line)
 {
 	char	**tab;
 

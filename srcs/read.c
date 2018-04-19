@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 22:38:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 00:16:30 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,30 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 
 static int	read2bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst)
 {
-	char		**start_stop;
+	char		**tmp;
 	char		**tb;
 
 	tb = NULL;
-	start_stop = NULL;
-	if (!(start_stop = (char **)malloc(sizeof(char *))))
+	if (!(tmp = (char **)malloc(sizeof(char *))))
 		return (0);
-	get_next_line(0, start_stop);
+	get_next_line(0, tmp);
 	if (!ft_strcmp(line, "##start"))
 	{
-		if (!(tmp_lst = ft_lstnew((tb = parse_rooms(*start_stop)), 4 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew((tb = parse_rooms(*tmp)), 4 * sizeof(char*))))
 			return (0);
-		free(tb);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
-		ant_hill->start = *start_stop;
+		ant_hill->start = tb[0];
 	}
 	else if (!ft_strcmp(line, "##end"))
 	{
-		if (!(tmp_lst = ft_lstnew((tb = parse_rooms(*start_stop)), 4 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew((tb = parse_rooms(*tmp)), 4 * sizeof(char*))))
 			return (0);
-		free(tb);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
-		ant_hill->end = *start_stop;
+		ant_hill->end = tb[0];
 	}
-	free(*start_stop);
-	free(start_stop);
+	free(tb);
+	free(*tmp);
+	free(tmp);
 	return (1);
 }
 

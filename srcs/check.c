@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_check.c                                       :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 16:42:43 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 00:03:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_rooms(t_ant_hill *ant_hill)
 	tmp_rooms = ant_hill->rooms;
 	while (tmp_rooms->content)
 	{
-		i = 0;
+		i = 1;
 		tmp = (char**)tmp_rooms->content;
 		while (tmp[i])
 		{
