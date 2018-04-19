@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 19:07:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/19 22:02:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ static t_ant_hill	*init_ant_hill(t_ant_hill *ant_hill)
 
 static void			del(void *content, size_t content_size)
 {
+	char	**tab;
+
+	if (!content)
+		return ;
+	tab = (char**)content;
 	(void)content_size;
+	while (*tab)
+		free(*tab++);
 	free(content);
 }
 
