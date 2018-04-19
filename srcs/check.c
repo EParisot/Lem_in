@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 15:49:04 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:42:43 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,59 @@
 
 static int	check_rooms(t_ant_hill *ant_hill)
 {
-	t_list	*rooms_lst;
-	char	*tmp;
+	t_list	*tmp_rooms;
+	char	**tmp;
+	int		i;
+	int		j;
 
 	tmp = NULL;
-	rooms_lst = ant_hill->rooms;
-	while ((char*)rooms_lst->content)
+	tmp_rooms = ant_hill->rooms;
+	while (tmp_rooms->content)
 	{
-		tmp = (char*)rooms_lst->content;
-		while (*tmp)
+		i = 0;
+		tmp = (char**)tmp_rooms->content;
+		while (tmp[i])
 		{
-			if (*tmp == ' ')
-			{
-				tmp++;
-				while (*tmp && *tmp != ' ')
-				{
-					if (!ft_isdigit(*tmp))
-						return (0);
-					tmp++;
-				}
-			}
-			tmp++;
+			j = ft_strlen(tmp[i]);
+			while (--j >= 0)
+				if (!ft_isdigit(tmp[i][j]))
+					return (0);
+			i++;
 		}
-		rooms_lst = rooms_lst->next;
+		tmp_rooms = tmp_rooms->next;
 	}
 	return (1);
 }
 
 static int	check_tubes(t_ant_hill *ant_hill)
 {
-	t_list	*rooms_lst;
-	t_list	*tubes_lst;
-	char	*tmp;
+	t_list	*tmp_rooms;
+	t_list	*tmp_tubes;
 
-	tmp = NULL;
-	rooms_lst = ant_hill->rooms;
-	tubes_lst = ant_hill->tubes;
-	while ((char*)tubes_lst->content)
+	tmp_rooms = ant_hill->rooms;
+	tmp_tubes = ant_hill->tubes;
+	while (tmp_tubes->content)
 	{
-		tmp = (char*)tubes_lst->content;
-		//TODO Parsers
-		tubes_lst = tubes_lst->next;
+		while (tmp_rooms->content)
+		{
+			if (!ft_strcmp(((char**)tmp_tubes->content)[0], \
+						((char**)tmp_rooms->content)[0]))
+				break ;
+			tmp_rooms = tmp_rooms->next;
+		}
+		if (!tmp_rooms->content)
+			return (0);
+		tmp_rooms = ant_hill->rooms;
+		while (tmp_rooms->content)
+		{
+			if (!ft_strcmp(((char**)tmp_tubes->content)[1], \
+						((char**)tmp_rooms->content)[0]))
+				break ;
+			tmp_rooms = tmp_rooms->next;
+		}
+		if (!tmp_rooms->content)
+			return (0);
+		tmp_tubes = tmp_tubes->next;
 	}
 	return (1);
 }
