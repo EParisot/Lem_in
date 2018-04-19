@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/19 15:55:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/19 16:49:31 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char			**parse_rooms(char *line)
 {
 	char	**tab;
 
-	if (!(tab = (char**)malloc(3 * sizeof(char*))))
+	if (!(tab = (char**)malloc(4 * sizeof(char*))))
 		return (NULL);
 	return (parse_rooms_bis(line, tab));
 }
