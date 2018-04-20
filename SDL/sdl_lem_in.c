@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 22:40:53 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 22:41:49 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		draw_flag(SDL_Window *window, int x, int y, int flag)
 }
 
 void		draw_text(char **room, int *max, SDL_Window *window)
-{(void)max;
+{
 	TTF_Font		*font;
 	const SDL_Color	black = {0, 0, 0, 255};
 	SDL_Surface		*surface;
