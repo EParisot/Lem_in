@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 00:16:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:37:07 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 
 	tmp_lst = NULL;
 	tb = NULL;
-	if (ft_isdigit(line[0]) && !ft_strchr(line, ' ') && !ft_strchr(line, '-'))
+	if (line[0] != '#' && ft_isdigit(line[0]) && !ft_strchr(line, ' ') && \
+		!ft_strchr(line, '-'))
 		ant_hill->ant_nb = ft_atoi(line);
-	else if (ft_strchr(line, ' '))
+	else if (line[0] != '#' && ft_strchr(line, ' '))
 	{
 		if (!(tmp_lst = ft_lstnew((tb = parse_rooms(line)), 4 * sizeof(char*))))
 			return (0);
 		free(tb);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
 	}
-	else if (ft_strchr(line, '-'))
+	else if (line[0] != '#' && ft_strchr(line, '-'))
 	{
 		if (!(tmp_lst = ft_lstnew((tb = parse_tubes(line)), 3 * sizeof(char*))))
 			return (0);

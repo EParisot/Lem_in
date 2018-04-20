@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 00:03:35 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:57:36 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,50 @@ static int	check_rooms(t_ant_hill *ant_hill)
 	return (1);
 }
 
-static int	check_tubes(t_ant_hill *ant_hill)
+static int	check_a(t_ant_hill *ant_hill, t_list *tmp_tubes)
 {
 	t_list	*tmp_rooms;
-	t_list	*tmp_tubes;
 
 	tmp_rooms = ant_hill->rooms;
+	while (tmp_rooms->content)
+	{
+		if (!ft_strcmp(((char**)tmp_tubes->content)[0], \
+					((char**)tmp_rooms->content)[0]))
+			break ;
+		tmp_rooms = tmp_rooms->next;
+	}
+	if (!tmp_rooms->content)
+		return (0);
+	return (1);
+}
+
+static int	check_b(t_ant_hill *ant_hill, t_list *tmp_tubes)
+{
+	t_list	*tmp_rooms;
+
+	tmp_rooms = ant_hill->rooms;
+	while (tmp_rooms->content)
+	{
+		if (!ft_strcmp(((char**)tmp_tubes->content)[1], \
+					((char**)tmp_rooms->content)[0]))
+			break ;
+		tmp_rooms = tmp_rooms->next;
+	}
+	if (!tmp_rooms->content)
+		return (0);
+	return (1);
+}
+
+static int	check_tubes(t_ant_hill *ant_hill)
+{
+	t_list	*tmp_tubes;
+
 	tmp_tubes = ant_hill->tubes;
 	while (tmp_tubes->content)
 	{
-		while (tmp_rooms->content)
-		{
-			if (!ft_strcmp(((char**)tmp_tubes->content)[0], \
-						((char**)tmp_rooms->content)[0]))
-				break ;
-			tmp_rooms = tmp_rooms->next;
-		}
-		if (!tmp_rooms->content)
+		if (!check_a(ant_hill, tmp_tubes))
 			return (0);
-		tmp_rooms = ant_hill->rooms;
-		while (tmp_rooms->content)
-		{
-			if (!ft_strcmp(((char**)tmp_tubes->content)[1], \
-						((char**)tmp_rooms->content)[0]))
-				break ;
-			tmp_rooms = tmp_rooms->next;
-		}
-		if (!tmp_rooms->content)
+		if (!check_b(ant_hill, tmp_tubes))
 			return (0);
 		tmp_tubes = tmp_tubes->next;
 	}

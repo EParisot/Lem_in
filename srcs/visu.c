@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 03:44:38 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:19:32 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void			print_input(t_ant_hill *ant_hill)
 	}
 	ft_putchar('\n');
 }
-/*
+
 static int			*get_max(t_ant_hill *ant_hill)
 {
 	t_list		*tmp;
@@ -78,32 +78,71 @@ static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 		//TODO : Show Room'name
 		//TODO : Add Start and End Flags
 		draw(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
-				50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
+					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
 		tmp = tmp->next;
 	}
 	free(max);
 }
 
+static int			*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
+{
+	t_list	*tmp;
+	int		*max;
+
+	tmp = ant_hill->rooms;
+	max = get_max(ant_hill);
+	while (tmp->content)
+	{
+		if (!ft_strcmp(tube[0], ((char**)tmp->content)[0]))
+		{
+			tab[0] = 90 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]);
+			tab[1] = 90 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
+		}
+		tmp = tmp->next;
+	}
+	tmp = ant_hill->rooms;
+	while (tmp->content)
+	{
+		if (!ft_strcmp(tube[1], ((char**)tmp->content)[0]))
+		{
+			tab[2] = 90 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]);
+			tab[3] = 90 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
+		}
+		tmp = tmp->next;
+	}
+	return (tab);
+}
+
 static SDL_Window	*visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
 {
+	t_list		*tmp;
+	int			*coords;
+
+	tmp = ant_hill->tubes;
 	if (!(window = w_init()))
 		return (NULL);
+	if (!(coords = (int*)malloc(4 * sizeof(int))))
+		return (NULL);
 	w_clear(window);
-	//TODO Turn tubes data into coords tab
-	(void)ant_hill;
-	//draw_line();
+	while (tmp->content)
+	{
+		coords = get_coords(ant_hill, (char**)tmp->content, coords);
+		draw_line(window, coords);
+		tmp = tmp->next;
+	}
+	free(coords);
 	return (window);
 }
-*/
+
 void				visu(t_ant_hill *ant_hill)
 {
-	//SDL_Window	*window;
+	SDL_Window	*window;
 
-	//window = NULL;
+	window = NULL;
 	print_input(ant_hill);
-	//if (!(window = visu_tubes(ant_hill, window)))
-	//	return ;
-	//visu_rooms(ant_hill, window);
-	//SDL_Delay(10000);
-	//w_destroy(window);
+	if (!(window = visu_tubes(ant_hill, window)))
+		return ;
+	visu_rooms(ant_hill, window);
+	SDL_Delay(10000);
+	w_destroy(window);
 }

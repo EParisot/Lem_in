@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 03:44:34 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:17:38 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ SDL_Window	*w_init(void)
 	SDL_Renderer	*renderer;
 
 	window = NULL;
+	renderer = NULL;
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		ft_printf("SDL_ERROR\n");
@@ -42,7 +43,7 @@ void		draw(SDL_Window *window, int x, int y)
 	rect.y = y;
 	rect.h = 80;
 	rect.w = 80;
-	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 166, 144, 118, 255);
+	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 123, 103, 81, 255);
 	SDL_RenderFillRect(SDL_GetRenderer(window), &rect);
 }
 
@@ -52,8 +53,8 @@ static void	draw_dot(SDL_Window *window, int x, int y)
 
 	rect.x = x;
 	rect.y = y;
-	rect.w = 1;
-	rect.h = 1;
+	rect.w = 10;
+	rect.h = 10;
 	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 166, 144, 118, 255);
 	SDL_RenderFillRect(SDL_GetRenderer(window), &rect);
 }
@@ -80,7 +81,6 @@ void		draw_line(SDL_Window *win, int *coords)
 		pos.y += move.y;
 		i++;
 	}
-	free(coords);
 }
 
 void		w_clear(SDL_Window *window)
