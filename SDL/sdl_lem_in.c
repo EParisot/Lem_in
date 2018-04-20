@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 03:12:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 03:44:34 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void		draw_line(SDL_Window *win, int *coords)
 		pos.y += move.y;
 		i++;
 	}
+	free(coords);
 }
 
 void		w_clear(SDL_Window *window)

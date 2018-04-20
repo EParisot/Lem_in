@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 03:18:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 03:44:38 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	print_input(t_ant_hill *ant_hill)
+static void			print_input(t_ant_hill *ant_hill)
 {
 	t_list	*tmp_rooms;
 	t_list	*tmp_tubes;
@@ -39,8 +39,8 @@ static void	print_input(t_ant_hill *ant_hill)
 	}
 	ft_putchar('\n');
 }
-
-static int	*get_max(t_ant_hill *ant_hill)
+/*
+static int			*get_max(t_ant_hill *ant_hill)
 {
 	t_list		*tmp;
 	int			*tab;
@@ -65,17 +65,14 @@ static int	*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static SDL_Window	*visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
+static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 {
 	t_list		*tmp;
 	int			*max;
 
 	if (!(max = get_max(ant_hill)))
-		return (NULL);
+		return ;
 	tmp = ant_hill->rooms;
-	if (!(window = w_init()))
-		return (NULL);
-	w_clear(window);
 	while (tmp->content)
 	{
 		//TODO : Show Room'name
@@ -85,26 +82,28 @@ static SDL_Window	*visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 		tmp = tmp->next;
 	}
 	free(max);
-	return (window);
 }
 
-static void	visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
+static SDL_Window	*visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
 {
+	if (!(window = w_init()))
+		return (NULL);
+	w_clear(window);
 	//TODO Turn tubes data into coords tab
 	(void)ant_hill;
-	(void)window;
 	//draw_line();
+	return (window);
 }
-
-void		visu(t_ant_hill *ant_hill)
+*/
+void				visu(t_ant_hill *ant_hill)
 {
-	SDL_Window	*window;
+	//SDL_Window	*window;
 
-	window = NULL;
+	//window = NULL;
 	print_input(ant_hill);
-	if (!(window = visu_rooms(ant_hill, window)))
-		return ;
-	visu_tubes(ant_hill, window);
-	SDL_Delay(10000);
-	w_destroy(window);
+	//if (!(window = visu_tubes(ant_hill, window)))
+	//	return ;
+	//visu_rooms(ant_hill, window);
+	//SDL_Delay(10000);
+	//w_destroy(window);
 }
