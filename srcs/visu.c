@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 15:48:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 22:39:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,24 @@ static int			*get_max(t_ant_hill *ant_hill)
 
 static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 {
-	t_list		*tmp;
-	int			*max;
+	t_list			*tmp;
+	int				*max;
 
 	if (!(max = get_max(ant_hill)))
 		return ;
 	tmp = ant_hill->rooms;
+	//draw_text((char**)tmp->content, max, window);
 	while (tmp->content)
 	{
-		//TODO : Show Room'name
-		//TODO : Add Start and End Flags
+		draw_text((char**)tmp->content, max, window);
 		draw(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
 					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
+		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
+			draw_flag(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
+		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
+		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
+			draw_flag(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
+		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
 		tmp = tmp->next;
 	}
 	free(max);

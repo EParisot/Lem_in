@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/20 02:10:00 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/20 20:20:16 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIBS	=	libft/libft.a \
 			printf/libftprintf.a \
-			`SDL2-config --libs`
+			`SDL2-config --libs` \
+			-lSDL2_ttf
 
 RM		=	rm -f
 

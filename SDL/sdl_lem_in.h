@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 15:41:16 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 22:23:21 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define ABS_MAX(x, y) ((abs(x) > abs(y)) ? abs(x) : abs(y))
 
 # include <SDL.h>
+# include <SDL_ttf.h>
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
 
@@ -27,6 +28,8 @@ typedef struct		s_2dvector
 
 SDL_Window			*w_init(void);
 void				draw(SDL_Window *window, int x, int y);
+void				draw_text(char **room, int *max, SDL_Window *window);
+void				draw_flag(SDL_Window *window, int x, int y, int flag);
 void				draw_line(SDL_Window *window, int *coords);
 void				w_clear(SDL_Window *window);
 
