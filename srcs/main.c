@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 00:04:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 02:08:59 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int					main(void)
 	free(*line);
 	free(line);
 	if (check_ant_hill(ant_hill))
-		lem_in(ant_hill);
+		visu(ant_hill);
 	else
 		ft_printf("ERROR\n");
 	del_ant_hill(ant_hill);

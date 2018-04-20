@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   sdl_lem_in.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 02:08:09 by eparisot         ###   ########.fr       */
+/*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
+/*   Updated: 2018/04/20 01:08:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
+#ifndef SDL_PUSHSWAP_H
 
-# define LEM_IN_H
+# define SDL_PUSHSWAP_H
 
+# include <SDL.h>
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
-# include "../GNL/get_next_line.h"
-# include "../SDL/sdl_lem_in.h"
 
-typedef struct		s_ant_hill
-{
-	int				ant_nb;
-	char			*start;
-	char			*end;
-	t_list			*rooms;
-	t_list			*tubes;
-}					t_ant_hill;
-
-int					read_data(t_ant_hill *ant_hill, char *line);
-int					check_ant_hill(t_ant_hill *ant_hill);
-char				**parse_rooms(char *line);
-char				**parse_tubes(char *line);
-void				visu(t_ant_hill *ant_hill);
+SDL_Window			*w_init(void);
+void				draw(SDL_Window *window, int x, int y);
+void				w_clear(SDL_Window *window);
+void				w_destroy(SDL_Window *window);
 
 #endif
