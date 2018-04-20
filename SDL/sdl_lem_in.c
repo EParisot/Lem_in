@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 01:36:23 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 03:12:17 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,59 @@ SDL_Window	*w_init(void)
 
 void		draw(SDL_Window *window, int x, int y)
 {
-	SDL_Rect	r;
+	SDL_Rect	rect;
 
-	r.x = x;
-	r.y = y;
-	r.h = 80;
-	r.w = 80;
+	rect.x = x;
+	rect.y = y;
+	rect.h = 80;
+	rect.w = 80;
 	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 166, 144, 118, 255);
-	SDL_RenderFillRect(SDL_GetRenderer(window), &r);
+	SDL_RenderFillRect(SDL_GetRenderer(window), &rect);
 }
 
-void			w_clear(SDL_Window *window)
+static void	draw_dot(SDL_Window *window, int x, int y)
+{
+	SDL_Rect rect;
+
+	rect.x = x;
+	rect.y = y;
+	rect.w = 1;
+	rect.h = 1;
+	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 166, 144, 118, 255);
+	SDL_RenderFillRect(SDL_GetRenderer(window), &rect);
+}
+
+void		draw_line(SDL_Window *win, int *coords)
+{
+	int			div;
+	int			i;
+	t_2Dvector	pos;
+	t_2Dvector	move;
+
+	i = 0;
+	pos.x = coords[0];
+	pos.y = coords[1];
+	move.x = coords[2] - coords[0];
+	move.y = coords[3] - coords[1];
+	div = abs_max(coords[2] - coords[0], coords[3] - coords[1]);
+	move.x = move.x / div;
+	move.y = move.y / div;
+	while (i < div)
+	{
+		draw_dot(win, (int)pos.x, (int)pos.y);
+		pos.x += move.x;
+		pos.y += move.y;
+		i++;
+	}
+}
+
+void		w_clear(SDL_Window *window)
 {
 	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 242, 241, 223, 255);
 	SDL_RenderClear(SDL_GetRenderer(window));
 }
 
-void			w_destroy(SDL_Window *window)
+void		w_destroy(SDL_Window *window)
 {
 	SDL_DestroyRenderer(SDL_GetRenderer(window));
 	SDL_DestroyWindow(window);

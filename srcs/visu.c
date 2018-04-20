@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   visu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 02:09:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/20 03:18:59 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,39 +65,46 @@ static int	*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static void	visu_rooms(t_ant_hill *ant_hill)
+static SDL_Window	*visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 {
-	SDL_Window	*window;
 	t_list		*tmp;
 	int			*max;
 
 	if (!(max = get_max(ant_hill)))
-		return ;
+		return (NULL);
 	tmp = ant_hill->rooms;
 	if (!(window = w_init()))
-		return ;
+		return (NULL);
 	w_clear(window);
 	while (tmp->content)
 	{
 		//TODO : Show Room'name
 		//TODO : Add Start and End Flags
 		draw(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
-					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
+				50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
 		tmp = tmp->next;
 	}
-	SDL_Delay(10000);
-	w_destroy(window);
 	free(max);
+	return (window);
 }
 
-static void	visu_tubes(t_ant_hill *ant_hill)
+static void	visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
 {
+	//TODO Turn tubes data into coords tab
 	(void)ant_hill;
+	(void)window;
+	//draw_line();
 }
 
 void		visu(t_ant_hill *ant_hill)
 {
+	SDL_Window	*window;
+
+	window = NULL;
 	print_input(ant_hill);
-	visu_rooms(ant_hill);
-	visu_tubes(ant_hill);
+	if (!(window = visu_rooms(ant_hill, window)))
+		return ;
+	visu_tubes(ant_hill, window);
+	SDL_Delay(10000);
+	w_destroy(window);
 }
