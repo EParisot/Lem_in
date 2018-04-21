@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 02:14:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 22:05:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void				draw_flag(SDL_Window *window, int x, int y, int flag);
 void				draw_line(SDL_Window *window, int *coords);
 void				draw_ant(SDL_Window *window, int x, int y);
 void				w_clear(SDL_Window *window);
+void				w_destroy(SDL_Window *window);
 
 #endif

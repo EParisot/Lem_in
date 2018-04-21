@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 02:46:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 22:05:39 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 	if (!(max = get_max(ant_hill)))
 		return ;
 	tmp = ant_hill->rooms;
-	//draw_text((char**)tmp->content, max, window);
 	while (tmp->content)
 	{
 		draw_text((char**)tmp->content, max, window);
@@ -116,19 +115,25 @@ void				visu(t_ant_hill *ant_hill)
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
+	int				*max;
+	t_list		*tmp;
 
+	tmp = ant_hill->rooms;
 	window = NULL;
 	renderer = NULL;
+	max = get_max(ant_hill);
 	if (!(window = visu_tubes(ant_hill, window)))
 		return ;
 	visu_rooms(ant_hill, window);
-	//TODO
-	draw_ant(window, 100, 100);
-	//
+	while (tmp->content)
+	{
+		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
+			draw_ant(window, 75 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
+			max[0]), 75 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
+		tmp = tmp->next;
+	}
+	free(max);
 	renderer = SDL_GetRenderer(window);
 	SDL_RenderPresent(renderer);
-	SDL_Delay(10000);
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	w_destroy(window);
 }

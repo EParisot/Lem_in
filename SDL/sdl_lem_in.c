@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 02:46:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 22:05:42 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,15 @@ void		w_clear(SDL_Window *window)
 {
 	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 242, 241, 223, 255);
 	SDL_RenderClear(SDL_GetRenderer(window));
+}
+
+void		w_destroy(SDL_Window *window)
+{
+	SDL_Renderer	*renderer;
+
+	SDL_Delay(5000);
+	renderer = SDL_GetRenderer(window);
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
