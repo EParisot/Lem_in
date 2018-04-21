@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 22:39:00 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 02:16:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ void				visu(t_ant_hill *ant_hill)
 	if (!(window = visu_tubes(ant_hill, window)))
 		return ;
 	visu_rooms(ant_hill, window);
+	//TODO
+	draw_ant(window, 100, 100);
+	//
 	renderer = SDL_GetRenderer(window);
 	SDL_RenderPresent(renderer);
 	SDL_Delay(10000);

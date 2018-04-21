@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 22:41:49 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 02:14:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,18 @@ void		draw_text(char **room, int *max, SDL_Window *window)
 
 	if (TTF_Init() == -1)
 		return ;
-	font = TTF_OpenFont("/Library/Fonts/Arial.ttf", 20);
-	surface = TTF_RenderText_Solid(font, room[0], black);
-	text = SDL_CreateTextureFromSurface(SDL_GetRenderer(window), surface);
-	rect.x = 50 + (1000 * ft_atoi(room[1]) / max[0]);
-	rect.y = 130 + (600 * ft_atoi(room[2]) / max[1]);
-	rect.w = 20;
-	rect.h = 20;
-	SDL_RenderCopy(SDL_GetRenderer(window), text, NULL, &rect);
+	surface = NULL;
+	text = NULL;
+	if ((font = TTF_OpenFont("SDL/Arial.ttf", 20)))
+	{
+		surface = TTF_RenderText_Solid(font, room[0], black);
+		text = SDL_CreateTextureFromSurface(SDL_GetRenderer(window), surface);
+		rect.x = 50 + (1000 * ft_atoi(room[1]) / max[0]);
+		rect.y = 130 + (600 * ft_atoi(room[2]) / max[1]);
+		rect.w = 20;
+		rect.h = 20;
+		SDL_RenderCopy(SDL_GetRenderer(window), text, NULL, &rect);
+	}
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(text);
 	TTF_CloseFont(font);
@@ -132,6 +136,28 @@ void		draw_line(SDL_Window *win, int *coords)
 		pos.y += move.y;
 		i++;
 	}
+}
+
+void		draw_ant(SDL_Window *window, int x, int y)
+{
+	SDL_Surface		*surface;
+	SDL_Texture		*image;
+	SDL_Rect		rect;
+	SDL_Renderer	*renderer;
+
+	surface = NULL;
+	image = NULL;
+	renderer = SDL_GetRenderer(window);
+	if ((surface = SDL_LoadBMP("SDL/ant.bmp")))
+	{
+		image = SDL_CreateTextureFromSurface(renderer, surface);
+		rect.x = x;
+		rect.y = y;
+		SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
+		SDL_RenderCopy(renderer, image, NULL, &rect);
+	}
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(image);
 }
 
 void		w_clear(SDL_Window *window)
