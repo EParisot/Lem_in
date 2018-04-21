@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 22:05:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 22:29:23 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static SDL_Window	*visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
 	return (window);
 }
 
-void				visu(t_ant_hill *ant_hill)
+SDL_Window			*visu(t_ant_hill *ant_hill)
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
@@ -123,7 +123,7 @@ void				visu(t_ant_hill *ant_hill)
 	renderer = NULL;
 	max = get_max(ant_hill);
 	if (!(window = visu_tubes(ant_hill, window)))
-		return ;
+		return (NULL);
 	visu_rooms(ant_hill, window);
 	while (tmp->content)
 	{
@@ -135,5 +135,5 @@ void				visu(t_ant_hill *ant_hill)
 	free(max);
 	renderer = SDL_GetRenderer(window);
 	SDL_RenderPresent(renderer);
-	w_destroy(window);
+	return (window);
 }

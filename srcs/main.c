@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 21:58:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/21 23:36:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void			del_ant_hill(t_ant_hill *ant_hill)
 	free(ant_hill);
 }
 
-static void			print_input(t_ant_hill *ant_hill)
+void				print_input(t_ant_hill *ant_hill)
 {
 	t_list		*tmp_rooms;
 	t_list		*tmp_tubes;
@@ -78,13 +78,15 @@ int					main(int ac, char **av)
 {
 	char			**line;
 	t_ant_hill		*ant_hill;
+	SDL_Window		*window;
 
 	ant_hill = NULL;
+	window = NULL;
 	if (!(ant_hill = init_ant_hill(ant_hill)))
 		return (0);
-	if ((line = (char **)malloc(sizeof(char *))) == NULL)
+	if (!(line = (char **)malloc(sizeof(char *))))
 		return (0);
-	while (get_next_line(0, line))
+	while (get_next_line(0, line) > 0)
 	{
 		if (!read_data(ant_hill, *line) || !ft_strcmp(*line, ""))
 			break ;
@@ -93,12 +95,10 @@ int					main(int ac, char **av)
 	free(*line);
 	free(line);
 	if (check_ant_hill(ant_hill))
-	{
-		print_input(ant_hill);
-		(ac > 1 && !ft_strcmp(av[1], "-v")) ? visu(ant_hill) : 0;
-	}
+		(!lem_in(ant_hill, window, ac, av)) ? ft_printf("ERROR\n") : 0;
 	else
 		ft_printf("ERROR\n");
 	del_ant_hill(ant_hill);
+	while (1);
 	return (0);
 }
