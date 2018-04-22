@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/22 02:54:01 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/22 14:34:45 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,17 +39,16 @@ CFLAGS	=	-Wall -Wextra -Werror `sdl2-config --cflags`
 ## -fno-omit-frame-pointer \
 ## -fsanitize-address-use-after-scope \
 
-all		:	$(NAME) $(LIBS)
+all		:	$(LIBS) $(NAME)
 
-$(NAME)	:	$(OBJS) $(LIBS)
+$(NAME)	:	$(OBJS)
 	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 $(LIBS)	:
-	cd libft && make && cd ../printf && make && cd ..
+	$(MAKE) -C libft && $(MAKE) -C printf
 
 clean	:
-	$(RM) $(OBJS) && cd libft/ && make clean && \
-cd ../printf && make clean && cd ..
+	$(RM) $(OBJS) && $(MAKE) clean -C libft && $(MAKE) clean -C printf
 
 fclean	:	clean
 	$(RM) $(NAME) libft/libft.a printf/libftprintf.a
