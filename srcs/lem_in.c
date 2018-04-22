@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 13:50:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 22:30:58 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,42 +79,51 @@ static int		check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
 	return (1);
 }
 
-static int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill, \
-			SDL_Window *window)
+static int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill,\
+		t_win *win)
 {
 	int		*max;
+	char	**src;
+	t_list	*tmp;
 
+	src = NULL;
+	tmp = ant_hill->rooms;
 	max = get_max(ant_hill);
 	if (!check_move(ant, dest, ant_hill))
 		return (0);
+	while (tmp->content)
+	{
+		if (!ft_strcmp(ant->room, ((char**)tmp->content)[0]))
+			src = ((char**)tmp->content);
+		tmp = tmp->next;
+	}
 	free(ant->room);
 	if (!(ant->room = ft_strdup(dest[0])))
 		return (0);
-	//MOVE_TEST
-	if (window)
-		draw_ant(window, 75 + (1000 * ft_atoi(dest[1]) / max[0]), \
-						75 + (600 * ft_atoi(dest[2]) / max[1]));
-	//
+	if (win)
+		anim_ant(win, src, dest, max);
+	free(max);
 	return (1);
 }
 
-int			lem_in(t_ant_hill *ant_hill, SDL_Window *window, int ac, char **av)
+int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 {
 	t_list	*ants;
 
 	ants = NULL;
 	print_input(ant_hill);
 	if (ac > 1 && !ft_strcmp(av[1], "-v"))
-		window = visu(ant_hill);
+		win = visu(ant_hill);
 	if (!(ants = init_ants(ant_hill)))
 		return (0);
 	// MOVE_TEST
 	SDL_Delay(5000);
-	if (!move_ant(ants->content, ant_hill->rooms->content, ant_hill, window))
+	char	*test[3] = {"2\0", "16\0", "7\0"};
+	if (!move_ant(ants->content, test, ant_hill, win))
 		return (0);
 	//
-	if (window)
-		w_destroy(window);
+	if (win)
+		w_destroy(win);
 	destroy_ants(ants);
 	return (1);
 }

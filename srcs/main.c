@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 01:38:36 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 22:44:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int					main(int ac, char **av)
 {
 	char			**line;
 	t_ant_hill		*ant_hill;
-	SDL_Window		*window;
+	t_win			*win;
 
 	ant_hill = NULL;
-	window = NULL;
+	win = NULL;
 	if (!(ant_hill = init_ant_hill(ant_hill)))
 		return (0);
 	if (!(line = (char **)malloc(sizeof(char *))))
@@ -95,9 +95,10 @@ int					main(int ac, char **av)
 	free(*line);
 	free(line);
 	if (check_ant_hill(ant_hill))
-		(!lem_in(ant_hill, window, ac, av)) ? ft_printf("ERROR\n") : 0;
+		(!lem_in(ant_hill, win, ac, av)) ? ft_printf("ERROR\n") : 0;
 	else
 		ft_printf("ERROR\n");
 	del_ant_hill(ant_hill);
+	while(1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 14:42:23 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 22:15:01 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
+static void			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 {
 	t_list			*tmp;
 	int				*max;
@@ -47,14 +47,14 @@ static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 	tmp = ant_hill->rooms;
 	while (tmp->content)
 	{
-		draw_text((char**)tmp->content, max, window);
-		draw(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
+		draw_text(win, (char**)tmp->content, max);
+		draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
 					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
-			draw_flag(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
+			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
 		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
-			draw_flag(window, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
+			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
 		tmp = tmp->next;
 	}
@@ -90,50 +90,47 @@ int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 	return (tab);
 }
 
-static SDL_Window	*visu_tubes(t_ant_hill *ant_hill, SDL_Window *window)
+static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 {
 	t_list		*tmp;
 	int			*coords;
 
 	tmp = ant_hill->tubes;
-	if (!(window = w_init()))
+	if (!(win = w_init()))
 		return (NULL);
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
-	w_clear(window);
+	w_clear(win);
 	while (tmp->content)
 	{
 		coords = get_coords(ant_hill, (char**)tmp->content, coords);
-		draw_line(window, coords);
+		draw_line(win, coords);
 		tmp = tmp->next;
 	}
 	free(coords);
-	return (window);
+	return (win);
 }
 
-SDL_Window			*visu(t_ant_hill *ant_hill)
+t_win			*visu(t_ant_hill *ant_hill)
 {
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
-	int				*max;
+	t_win		*win;
+	int			*max;
 	t_list		*tmp;
 
 	tmp = ant_hill->rooms;
-	window = NULL;
-	renderer = NULL;
+	win = NULL;
 	max = get_max(ant_hill);
-	if (!(window = visu_tubes(ant_hill, window)))
+	if (!(win = visu_tubes(ant_hill, win)))
 		return (NULL);
-	visu_rooms(ant_hill, window);
+	visu_rooms(ant_hill, win);
 	while (tmp->content)
 	{
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
-			draw_ant(window, 75 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
+			draw_ant(win, 75 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
 			max[0]), 75 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
 		tmp = tmp->next;
 	}
 	free(max);
-	renderer = SDL_GetRenderer(window);
-	SDL_RenderPresent(renderer);
-	return (window);
+	SDL_RenderPresent(win->renderer);
+	return (win);
 }

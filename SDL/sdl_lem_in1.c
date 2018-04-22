@@ -6,62 +6,60 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 23:03:02 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 22:41:37 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sdl_lem_in.h"
+#include "../srcs/lem_in.h"
 
-SDL_Window	*w_init(void)
+t_win	*w_init(void)
 {
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
+	t_win			*win;
 
-	window = NULL;
-	renderer = NULL;
+	if (!(win = (t_win*)malloc(sizeof(t_win*))))
+		return (NULL);
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		ft_printf("SDL_ERROR\n");
 		return (NULL);
 	}
-	window = SDL_CreateWindow("Lem-in", 0, 0, 1200, 800, 0);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-	if (!window || !renderer)
+	win->window = SDL_CreateWindow("Lem-in", 0, 0, 1200, 800, 0);
+	win->renderer = SDL_CreateRenderer(win->window, -1, \
+		SDL_RENDERER_PRESENTVSYNC);
+	win->bg = SDL_CreateTexture(win->renderer, SDL_PIXELFORMAT_RGBA8888, \
+		SDL_TEXTUREACCESS_TARGET, 1200, 800);
+	if (!win->window || !win->renderer || !win->bg)
 	{
 		ft_printf("SDL_ERROR\n");
 		SDL_Quit();
 		return (NULL);
 	}
-	return (window);
+	return (win);
 }
 
-void		draw(SDL_Window *window, int x, int y)
+void		draw(t_win *win, int x, int y)
 {
 	SDL_Rect		rect;
-	SDL_Renderer	*renderer;
 
-	renderer = SDL_GetRenderer(window);
 	rect.x = x;
 	rect.y = y;
 	rect.h = 80;
 	rect.w = 80;
-	SDL_SetRenderDrawColor(renderer, 123, 103, 81, 255);
-	SDL_RenderFillRect(renderer, &rect);
+	SDL_SetRenderDrawColor(win->renderer, 123, 103, 81, 255);
+	SDL_RenderFillRect(win->renderer, &rect);
 }
 
-void		w_clear(SDL_Window *window)
+void		w_clear(t_win *win)
 {
-	SDL_SetRenderDrawColor(SDL_GetRenderer(window), 242, 241, 223, 255);
-	SDL_RenderClear(SDL_GetRenderer(window));
+	SDL_SetRenderDrawColor(win->renderer, 242, 241, 223, 255);
+	SDL_RenderClear(win->renderer);
 }
 
-void		w_destroy(SDL_Window *window)
+void		w_destroy(t_win *win)
 {
-	SDL_Renderer	*renderer;
-
 	SDL_Delay(5000);
-	renderer = SDL_GetRenderer(window);
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(win->renderer);
+	SDL_DestroyWindow(win->window);
+	SDL_DestroyTexture(win->bg);
 	SDL_Quit();
 }

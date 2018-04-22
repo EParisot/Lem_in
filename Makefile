@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/22 18:54:25 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/22 19:15:29 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(NAME)	:	$(OBJS) $(INC)
 	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 $(LIBS)	:
-	$(MAKE) -C libft && $(MAKE) -C printf
+	@$(MAKE) -C libft && $(MAKE) -C printf
 
 clean	:
 	$(RM) $(OBJS) && $(MAKE) clean -C libft && $(MAKE) clean -C printf
