@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 00:48:15 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 01:19:01 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ static int		check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
 		if (!ft_strcmp(((char**)tmp_tubes->content)[0], ant->room))
 			if (!ft_strcmp(((char**)tmp_tubes->content)[1], dest[0]))
 				break;
-		if (!ft_strcmp(((char**)tmp_tubes->content)[1], ant->room))
-			if (!ft_strcmp(((char**)tmp_tubes->content)[0], dest[0]))
-				break;
 		tmp_tubes = tmp_tubes->next;
 	}
 	if (!tmp_tubes->content)
@@ -123,7 +120,7 @@ int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 		return (0);
 	// MOVE_TEST
 	SDL_Delay(5000);
-	char	*test[3] = {"2\0", "16\0", "7\0"};
+	char	*test[3] = {"3\0", "16\0", "3\0"};
 	if (!move_ant(ants->content, test, ant_hill, win))
 		return (0);
 	//
