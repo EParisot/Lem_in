@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:57:34 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 00:32:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_win	*w_init(void)
 	}
 	win->window = SDL_CreateWindow("Lem-in", 0, 0, 1200, 800, 0);
 	win->renderer = SDL_CreateRenderer(win->window, -1, \
-		SDL_RENDERER_PRESENTVSYNC);
+			SDL_RENDERER_PRESENTVSYNC);
 	win->bg = SDL_CreateTexture(win->renderer, SDL_PIXELFORMAT_RGBA8888, \
-		SDL_TEXTUREACCESS_TARGET, 1200, 800);
+			SDL_TEXTUREACCESS_TARGET, 1200, 800);
 	if (!win->window || !win->renderer || !win->bg)
 	{
 		ft_printf("SDL_ERROR\n");
@@ -45,14 +45,30 @@ void		draw(t_win *win, int x, int y)
 	rect.y = y;
 	rect.h = 80;
 	rect.w = 80;
-	SDL_SetRenderDrawColor(win->renderer, 123, 103, 81, 255);
+	SDL_SetRenderDrawColor(win->renderer, 174, 154, 132, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
 void		w_clear(t_win *win)
 {
-	SDL_SetRenderDrawColor(win->renderer, 242, 241, 223, 255);
-	SDL_RenderClear(win->renderer);
+	SDL_Surface		*surface;
+	SDL_Texture		*image;
+	SDL_Rect		rect;
+
+	surface = NULL;
+	image = NULL;
+	if ((surface = SDL_LoadBMP("SDL/minecraft.bmp")))
+	{
+		image = SDL_CreateTextureFromSurface(win->renderer, surface);
+		rect.x = 0;
+		rect.y = 0;
+		rect.w = 1200;
+		rect.h = 800;
+		SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	}
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(image);
+	SDL_RenderPresent(win->renderer);
 }
 
 void		w_destroy(t_win *win)
@@ -62,5 +78,4 @@ void		w_destroy(t_win *win)
 	SDL_DestroyWindow(win->window);
 	SDL_DestroyTexture(win->bg);
 	SDL_Quit();
-	TTF_Quit();
 }

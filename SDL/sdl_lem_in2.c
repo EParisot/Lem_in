@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:56:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 00:35:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void		draw_flag(t_win *win, int x, int y, int flag)
 	rect.x = x;
 	rect.y = y - 20;
 	rect.h = 20;
-	rect.w = 5;
-	SDL_SetRenderDrawColor(win->renderer, 93, 77, 60, 255);
+	rect.w = 7;
+	SDL_SetRenderDrawColor(win->renderer, 0, 0, 0, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
-	rect.x = x + 5;
+	rect.x = x + 7;
 	rect.y = y - 20;
 	rect.h = 10;
 	rect.w = 10;
@@ -50,14 +50,14 @@ void		draw_text(t_win *win, char **room, int *max)
 		surface = TTF_RenderText_Solid(font, room[0], black);
 		text = SDL_CreateTextureFromSurface(win->renderer, surface);
 		rect.x = 50 + (1000 * ft_atoi(room[1]) / max[0]);
-		rect.y = 130 + (600 * ft_atoi(room[2]) / max[1]);
+		rect.y = 50 + (600 * ft_atoi(room[2]) / max[1]);
 		rect.w = 20;
 		rect.h = 20;
 		SDL_RenderCopy(win->renderer, text, NULL, &rect);
+		TTF_CloseFont(font);
 	}
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(text);
-	TTF_CloseFont(font);
 	TTF_Quit();
 }
 
@@ -67,9 +67,9 @@ static void	draw_dot(t_win *win, int x, int y)
 
 	rect.x = x;
 	rect.y = y;
-	rect.w = 10;
-	rect.h = 10;
-	SDL_SetRenderDrawColor(win->renderer, 166, 144, 118, 255);
+	rect.w = 20;
+	rect.h = 20;
+	SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
@@ -112,7 +112,6 @@ void		draw_ant(t_win *win, int x, int y)
 		rect.y = y;
 		SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
 		SDL_RenderCopy(win->renderer, image, NULL, &rect);
-		
 	}
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(image);

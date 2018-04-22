@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 23:28:54 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 00:21:52 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	tmp = ant_hill->rooms;
 	while (tmp->content)
 	{
-		draw_text(win, (char**)tmp->content, max);
 		draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
 					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
@@ -56,6 +55,7 @@ static void			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
 			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
+		draw_text(win, (char**)tmp->content, max);
 		tmp = tmp->next;
 	}
 	free(max);
