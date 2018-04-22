@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 01:33:42 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 02:52:06 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void			visu_rooms(t_ant_hill *ant_hill, SDL_Window *window)
 	free(max);
 }
 
-static int			*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
+int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 {
 	t_list	*tmp;
 	int		*max;

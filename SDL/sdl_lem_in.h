@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 22:05:19 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 03:18:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <SDL_ttf.h>
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
+# include "../srcs/lem_in.h"
 
 typedef struct		s_2dvector
 {
@@ -32,6 +33,7 @@ void				draw_text(char **room, int *max, SDL_Window *window);
 void				draw_flag(SDL_Window *window, int x, int y, int flag);
 void				draw_line(SDL_Window *window, int *coords);
 void				draw_ant(SDL_Window *window, int x, int y);
+void				anim_ant(SDL_Window *window, char **src, char **dest);
 void				w_clear(SDL_Window *window);
 void				w_destroy(SDL_Window *window);
 

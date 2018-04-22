@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 02:29:05 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 03:08:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,14 @@ static int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill, \
 	int		*max;
 
 	max = get_max(ant_hill);
+	if (!check_move(ant, dest, ant_hill))
+		return (0);
 	free(ant->room);
 	if (!(ant->room = ft_strdup(dest[0])))
 		return (0);
-	if (!check_move(ant, dest, ant_hill))
-		return (0);
 	//MOVE_TEST
-	draw_ant(window, 75 + (1000 * ft_atoi(dest[1]) / max[0]), \
+	if (window)
+		draw_ant(window, 75 + (1000 * ft_atoi(dest[1]) / max[0]), \
 						75 + (600 * ft_atoi(dest[2]) / max[1]));
 	//
 	return (1);
