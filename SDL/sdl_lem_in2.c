@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 23:01:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 01:41:14 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void		draw_ant(SDL_Window *window, int x, int y)
 	}
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(image);
+	SDL_RenderPresent(renderer);
 }

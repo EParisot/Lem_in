@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/21 22:29:23 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 01:33:42 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			*get_max(t_ant_hill *ant_hill)
+int					*get_max(t_ant_hill *ant_hill)
 {
 	t_list		*tmp;
 	int			*tab;
