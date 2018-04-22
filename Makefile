@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/22 14:34:45 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/22 18:54:25 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRCS	=	srcs/main.c \
 			SDL/sdl_lem_in2.c \
 			SDL/sdl_lem_in3.c
 
+INC		=	srcs/lem_in.h \
+			SDL/sdl_lem_in.h
+
 OBJS	=	$(SRCS:.c=.o)
 
 LIBS	=	libft/libft.a \
@@ -30,18 +33,13 @@ LIBS	=	libft/libft.a \
 			`SDL2-config --libs` \
 			-lSDL2_ttf
 
-RM		=	rm -f
-
 CFLAGS	=	-Wall -Wextra -Werror `sdl2-config --cflags`
 
-## some useful `flags` for memory verifications
-## -O1 -g -fsanitize=address \
-## -fno-omit-frame-pointer \
-## -fsanitize-address-use-after-scope \
+RM		=	rm -f
 
 all		:	$(LIBS) $(NAME)
 
-$(NAME)	:	$(OBJS)
+$(NAME)	:	$(OBJS) $(INC)
 	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 $(LIBS)	:
