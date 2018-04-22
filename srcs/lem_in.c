@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 02:27:42 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 02:29:05 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,10 @@ static int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill, \
 		return (0);
 	if (!check_move(ant, dest, ant_hill))
 		return (0);
+	//MOVE_TEST
 	draw_ant(window, 75 + (1000 * ft_atoi(dest[1]) / max[0]), \
 						75 + (600 * ft_atoi(dest[2]) / max[1]));
+	//
 	return (1);
 }
 
