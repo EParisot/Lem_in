@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/22 19:15:29 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/22 22:58:21 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ SRCS	=	srcs/main.c \
 			SDL/sdl_lem_in2.c \
 			SDL/sdl_lem_in3.c
 
-INC		=	srcs/lem_in.h \
-			SDL/sdl_lem_in.h
+INC		=	srcs/lem_in.h
 
 OBJS	=	$(SRCS:.c=.o)
 

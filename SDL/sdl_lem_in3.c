@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:42:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 23:56:16 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 	{
 		clip.x = pos.x;
 		clip.y = pos.y;
-		clip.h = 32;;
 		clip.w = 32;
-		//SDL_RenderSetClipRect(SDL_GetRenderer(window), &clip);
-
+		clip.h = 32;
 		draw_ant(win, (int)pos.x, (int)pos.y);
 		pos.x += move.x;
 		pos.y += move.y;
-		SDL_Delay(10);
+		SDL_RenderCopy(win->renderer, win->bg, &clip, &clip);
 	}
 }

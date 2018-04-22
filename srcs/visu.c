@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:15:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 23:28:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 	tmp = ant_hill->tubes;
 	if (!(win = w_init()))
 		return (NULL);
+	SDL_SetRenderTarget(win->renderer, win->bg);
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
 	w_clear(win);
@@ -111,14 +112,15 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 	return (win);
 }
 
-t_win			*visu(t_ant_hill *ant_hill)
+t_win			*visu(t_ant_hill *ant_hill, t_win *win)
 {
-	t_win		*win;
 	int			*max;
 	t_list		*tmp;
+	SDL_Rect	rect;
 
+	rect.x = 0;
+	rect.y = 0;
 	tmp = ant_hill->rooms;
-	win = NULL;
 	max = get_max(ant_hill);
 	if (!(win = visu_tubes(ant_hill, win)))
 		return (NULL);
@@ -131,6 +133,9 @@ t_win			*visu(t_ant_hill *ant_hill)
 		tmp = tmp->next;
 	}
 	free(max);
+	SDL_SetRenderTarget(win->renderer, NULL);
+	SDL_QueryTexture(win->bg, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(win->renderer, win->bg, NULL, &rect);
 	SDL_RenderPresent(win->renderer);
 	return (win);
 }

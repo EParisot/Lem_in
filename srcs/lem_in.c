@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:30:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 23:29:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 	ants = NULL;
 	print_input(ant_hill);
 	if (ac > 1 && !ft_strcmp(av[1], "-v"))
-		win = visu(ant_hill);
+		win = visu(ant_hill, win);
 	if (!(ants = init_ants(ant_hill)))
 		return (0);
 	// MOVE_TEST

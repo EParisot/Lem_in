@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 22:44:12 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/22 23:53:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ int					main(int ac, char **av)
 	else
 		ft_printf("ERROR\n");
 	del_ant_hill(ant_hill);
-	while(1);
 	return (0);
 }
