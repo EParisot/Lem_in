@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   lem_in1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 01:19:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:35:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,50 +59,6 @@ static void		destroy_ants(t_list *ants)
 	ft_lstdel(&ants, del1);
 }
 
-static int		check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
-{
-	t_list	*tmp_tubes;
-
-	tmp_tubes = ant_hill->tubes;
-	while (tmp_tubes->content)
-	{
-		if (!ft_strcmp(((char**)tmp_tubes->content)[0], ant->room))
-			if (!ft_strcmp(((char**)tmp_tubes->content)[1], dest[0]))
-				break;
-		tmp_tubes = tmp_tubes->next;
-	}
-	if (!tmp_tubes->content)
-		return (0);
-	return (1);
-}
-
-static int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill,\
-		t_win *win)
-{
-	int		*max;
-	char	**src;
-	t_list	*tmp;
-
-	src = NULL;
-	tmp = ant_hill->rooms;
-	max = get_max(ant_hill);
-	if (!check_move(ant, dest, ant_hill))
-		return (0);
-	while (tmp->content)
-	{
-		if (!ft_strcmp(ant->room, ((char**)tmp->content)[0]))
-			src = ((char**)tmp->content);
-		tmp = tmp->next;
-	}
-	free(ant->room);
-	if (!(ant->room = ft_strdup(dest[0])))
-		return (0);
-	if (win)
-		anim_ant(win, src, dest, max);
-	free(max);
-	return (1);
-}
-
 int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 {
 	t_list	*ants;
@@ -118,12 +74,8 @@ int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 	print_input(ant_hill);
 	if (!(ants = init_ants(ant_hill)))
 		return (0);
-	// MOVE_TEST
-	SDL_Delay(5000);
-	char	*test[3] = {"3\0", "16\0", "3\0"};
-	if (!move_ant(ants->content, test, ant_hill, win))
+	if (!(algo(ants, ant_hill, win)))
 		return (0);
-	//
 	if (win)
 		w_destroy(win);
 	destroy_ants(ants);

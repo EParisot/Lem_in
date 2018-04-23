@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/22 22:58:21 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/23 17:28:25 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS	=	srcs/main.c \
 			srcs/parse.c \
 			srcs/check.c \
 			srcs/visu.c \
-			srcs/lem_in.c \
+			srcs/lem_in1.c \
+			srcs/lem_in2.c \
 			GNL/get_next_line.c \
 			SDL/sdl_lem_in1.c \
 			SDL/sdl_lem_in2.c \
