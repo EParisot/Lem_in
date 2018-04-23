@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:08:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:42:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			draw_text(t_win *win, char **room, int *max)
 	return (1);
 }
 
-static void	draw_dot(t_win *win, int x, int y)
+static void	draw_dot(t_win *win, int x, int y, int div)
 {
 	SDL_Rect		rect;
 
@@ -69,18 +69,21 @@ static void	draw_dot(t_win *win, int x, int y)
 	rect.y = y;
 	rect.w = 20;
 	rect.h = 20;
-	SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
+	if (div < 50 && div > 40)
+		SDL_SetRenderDrawColor(win->renderer, 154, 0, 0, 255);
+	else if (div < 60 && div > 50)
+		SDL_SetRenderDrawColor(win->renderer, 0, 128, 0, 255);
+	else
+		SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
 void		draw_line(t_win *win, int *coords)
 {
 	int			div;
-	int			i;
 	t_2dvector	pos;
 	t_2dvector	move;
 
-	i = 0;
 	pos.x = coords[0];
 	pos.y = coords[1];
 	move.x = coords[2] - coords[0];
@@ -88,12 +91,11 @@ void		draw_line(t_win *win, int *coords)
 	div = ABS_MAX(coords[2] - coords[0], coords[3] - coords[1]);
 	move.x = move.x / div;
 	move.y = move.y / div;
-	while (i < div)
+	while (div--)
 	{
-		draw_dot(win, (int)pos.x, (int)pos.y);
+		draw_dot(win, (int)pos.x, (int)pos.y, div);
 		pos.x += move.x;
 		pos.y += move.y;
-		i++;
 	}
 }
 
