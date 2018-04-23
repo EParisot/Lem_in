@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 00:09:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:00:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 	pos.y = coords[1];
 	move.x = coords[2] - coords[0];
 	move.y = coords[3] - coords[1];
-	div = ABS_MAX(coords[2] - coords[0], coords[3] - coords[1]);
+	div = ABS_MAX(coords[2] - coords[0], coords[3] - coords[1]) / 4;
 	move.x = move.x / div;
 	move.y = move.y / div;
 	while (div--)

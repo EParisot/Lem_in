@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 15:56:43 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 17:50:38 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 
 	tmp_lst = NULL;
 	tb = NULL;
-	if (line[0] != '#' && ft_isdigit(line[0]) && !ft_strchr(line, ' ') && \
-		!ft_strchr(line, '-'))
+	if (line[0] != '#' && line[0] != 'L' && ft_isdigit(line[0]) && \
+	!ft_strchr(line, ' ') && !ft_strchr(line, '-'))
 		ant_hill->ant_nb = ft_atoi(line);
-	else if (line[0] != '#' && ft_strchr(line, ' '))
+	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, ' '))
 	{
 		tb = parse_rooms(line);
 		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))))
 			return (0);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
 	}
-	else if (line[0] != '#' && ft_strchr(line, '-'))
+	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, '-'))
 	{
 		tb = parse_tubes(line);
 		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))))
@@ -59,7 +59,7 @@ static int	read2bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst)
 	if (!ft_strcmp(line, "##start"))
 	{
 		tb = parse_rooms(*tmp);
-		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))) || *tmp[0] == 'L')
 			return (0);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
 		ant_hill->start = tb[0];
@@ -67,7 +67,7 @@ static int	read2bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst)
 	else if (!ft_strcmp(line, "##end"))
 	{
 		tb = parse_rooms(*tmp);
-		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))) || *tmp[0] == 'L')
 			return (0);
 		ft_lstadd(&(ant_hill->rooms), tmp_lst);
 		ant_hill->end = tb[0];

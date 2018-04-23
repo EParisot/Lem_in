@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 17:37:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:08:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ typedef struct		s_win
 
 t_win*				w_init(void);
 void				draw(t_win *win, int x, int y);
-void				draw_text(t_win *win, char **room, int *max);
+int					draw_text(t_win *win, char **room, int *max);
 void				draw_flag(t_win *win, int x, int y, int flag);
 void				draw_line(t_win *win, int *coords);
-void				draw_ant(t_win *win, int x, int y);
+int					draw_ant(t_win *win, int x, int y);
 void				anim_ant(t_win *win, char **src, char **dest, int* max);
-void				w_clear(t_win *win);
+int					w_clear(t_win *win);
 void				w_destroy(t_win *win);
 
 int					read_data(t_ant_hill *ant_hill, char *line);

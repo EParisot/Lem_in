@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 00:21:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:16:56 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int					*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static void			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
+static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 {
 	t_list			*tmp;
 	int				*max;
 
 	if (!(max = get_max(ant_hill)))
-		return ;
+		return (0);
 	tmp = ant_hill->rooms;
 	while (tmp->content)
 	{
@@ -55,10 +55,15 @@ static void			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
 			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
-		draw_text(win, (char**)tmp->content, max);
+		if (!draw_text(win, (char**)tmp->content, max))
+			{
+				free(max);
+				return (0);
+			}
 		tmp = tmp->next;
 	}
 	free(max);
+	return (1);
 }
 
 int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
@@ -101,7 +106,11 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 	SDL_SetRenderTarget(win->renderer, win->bg);
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
-	w_clear(win);
+	if (!w_clear(win))
+	{
+		free(coords);
+		return (NULL);
+	}
 	while (tmp->content)
 	{
 		coords = get_coords(ant_hill, (char**)tmp->content, coords);
@@ -124,7 +133,8 @@ t_win			*visu(t_ant_hill *ant_hill, t_win *win)
 	max = get_max(ant_hill);
 	if (!(win = visu_tubes(ant_hill, win)))
 		return (NULL);
-	visu_rooms(ant_hill, win);
+	if (!visu_rooms(ant_hill, win))
+		return (NULL);
 	while (tmp->content)
 	{
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))

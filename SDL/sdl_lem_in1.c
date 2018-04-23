@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 00:32:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:05:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		draw(t_win *win, int x, int y)
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
-void		w_clear(t_win *win)
+int			w_clear(t_win *win)
 {
 	SDL_Surface		*surface;
 	SDL_Texture		*image;
@@ -57,18 +57,18 @@ void		w_clear(t_win *win)
 
 	surface = NULL;
 	image = NULL;
-	if ((surface = SDL_LoadBMP("SDL/minecraft.bmp")))
-	{
-		image = SDL_CreateTextureFromSurface(win->renderer, surface);
-		rect.x = 0;
-		rect.y = 0;
-		rect.w = 1200;
-		rect.h = 800;
-		SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	}
+	if (!(surface = SDL_LoadBMP("SDL/minecraft.bmp")))
+		return (0);
+	image = SDL_CreateTextureFromSurface(win->renderer, surface);
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = 1200;
+	rect.h = 800;
+	SDL_RenderCopy(win->renderer, image, NULL, &rect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(image);
 	SDL_RenderPresent(win->renderer);
+	return (1);
 }
 
 void		w_destroy(t_win *win)
