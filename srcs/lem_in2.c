@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:15:43 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/23 18:19:06 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill,\
 
 	src = NULL;
 	tmp = ant_hill->rooms;
-	max = get_max(ant_hill);
+	max = NULL;
 	if (!check_move(ant, dest, ant_hill))
 		return (0);
 	while (tmp->content)
@@ -51,6 +51,7 @@ int		move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill,\
 	if (!(ant->room = ft_strdup(dest[0])))
 		return (0);
 	ft_printf("L%d-%s ", ant->id, ant->room);
+	max = get_max(ant_hill);
 	if (win)
 		anim_ant(win, src, dest, max);
 	free(max);
