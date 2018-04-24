@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:08:11 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 20:45:38 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int					w_clear(t_win *win);
 void				w_destroy(t_win *win);
 
 int					read_data(t_ant_hill *ant_hill, char *line);
+int					read2(t_ant_hill *ant_hill, char *line);
 int					check_ant_hill(t_ant_hill *ant_hill);
 char				**parse_rooms(char *line);
 char				**parse_tubes(char *line);

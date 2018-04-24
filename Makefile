@@ -6,14 +6,15 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/24 05:19:17 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/24 20:42:42 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
 
 SRCS	=	srcs/main.c \
-			srcs/read.c \
+			srcs/read1.c \
+			srcs/read2.c \
 			srcs/parse.c \
 			srcs/check.c \
 			srcs/visu.c \
