@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 04:30:49 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:07:37 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static t_ant_hill	*init_ant_hill(t_ant_hill *ant_hill)
 	if ((ant_hill = (t_ant_hill *)malloc(sizeof(t_ant_hill))) == NULL)
 		return (NULL);
 	ant_hill->ant_nb = 0;
-	if ((ant_hill->rooms = ft_lstnew(NULL, sizeof(char*))) == NULL)
+	if ((ant_hill->rooms = ft_lstnew(NULL, 4 * sizeof(char*))) == NULL)
 		return (NULL);
-	if ((ant_hill->tubes = ft_lstnew(NULL, sizeof(char*))) == NULL)
+	if ((ant_hill->tubes = ft_lstnew(NULL, 3 * sizeof(char*))) == NULL)
 		return (NULL);
 	ant_hill->start = NULL;
 	ant_hill->end = NULL;
@@ -54,7 +54,7 @@ void				print_input(t_ant_hill *ant_hill)
 	tmp_rooms = ant_hill->rooms;
 	tmp_tubes = ant_hill->tubes;
 	ft_printf("%d\n", ant_hill->ant_nb);
-	while (tmp_rooms->content)
+	while (tmp_rooms)
 	{
 		if (!ft_strcmp(((char**)tmp_rooms->content)[0], ant_hill->start))
 			ft_printf("##start\n");
@@ -65,7 +65,7 @@ void				print_input(t_ant_hill *ant_hill)
 				((char**)tmp_rooms->content)[2]);
 		tmp_rooms = tmp_rooms->next;
 	}
-	while (tmp_tubes->content)
+	while (tmp_tubes)
 	{
 		ft_printf("%s-%s\n", ((char**)tmp_tubes->content)[0], \
 				((char**)tmp_tubes->content)[1]);

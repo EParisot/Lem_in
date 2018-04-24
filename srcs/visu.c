@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:16:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:05:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					*get_max(t_ant_hill *ant_hill)
 	x_max = 0;
 	y_max = 0;
 	tmp = ant_hill->rooms;
-	while (tmp->content)
+	while (tmp)
 	{
 		if (ft_atoi(((char**)tmp->content)[1]) > x_max)
 			x_max = ft_atoi(((char**)tmp->content)[1]);
@@ -45,7 +45,7 @@ static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	if (!(max = get_max(ant_hill)))
 		return (0);
 	tmp = ant_hill->rooms;
-	while (tmp->content)
+	while (tmp)
 	{
 		draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
 					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
@@ -73,7 +73,7 @@ int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 
 	tmp = ant_hill->rooms;
 	max = get_max(ant_hill);
-	while (tmp->content)
+	while (tmp)
 	{
 		if (!ft_strcmp(tube[0], ((char**)tmp->content)[0]))
 		{
@@ -83,7 +83,7 @@ int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 		tmp = tmp->next;
 	}
 	tmp = ant_hill->rooms;
-	while (tmp->content)
+	while (tmp)
 	{
 		if (!ft_strcmp(tube[1], ((char**)tmp->content)[0]))
 		{
@@ -111,7 +111,7 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 		free(coords);
 		return (NULL);
 	}
-	while (tmp->content)
+	while (tmp)
 	{
 		coords = get_coords(ant_hill, (char**)tmp->content, coords);
 		draw_line(win, coords);
@@ -135,7 +135,7 @@ t_win			*visu(t_ant_hill *ant_hill, t_win *win)
 		return (NULL);
 	if (!visu_rooms(ant_hill, win))
 		return (NULL);
-	while (tmp->content)
+	while (tmp)
 	{
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
 			draw_ant(win, 75 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \

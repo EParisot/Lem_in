@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 04:30:03 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 13:02:21 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int			check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
 	t_list	*tmp_tubes;
 
 	tmp_tubes = ant_hill->tubes;
-	while (tmp_tubes->content)
+	while (tmp_tubes)
 	{
 		if (!ft_strcmp(((char**)tmp_tubes->content)[0], ant->room))
 			if (!ft_strcmp(((char**)tmp_tubes->content)[1], dest[0]))
 				break;
 		tmp_tubes = tmp_tubes->next;
 	}
-	if (!tmp_tubes->content)
+	if (!tmp_tubes)
 		return (0);
 	return (1);
 }
@@ -41,7 +41,7 @@ int			move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill,\
 	max = NULL;
 	if (!check_move(ant, dest, ant_hill))
 		return (0);
-	while (tmp->content)
+	while (tmp)
 	{
 		if (!ft_strcmp(ant->room, ((char**)tmp->content)[0]))
 			src = ((char**)tmp->content);
@@ -150,7 +150,7 @@ int		get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 		return (1);
 	}
 	else
-		while (tmp_tubes->content)
+		while (tmp_tubes)
 		{
 			if (!ft_strcmp(pos, ((char**)tmp_tubes->content)[0]) && \
 			!is_in_lst(*path, ((char**)tmp_tubes->content)[1]))

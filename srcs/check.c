@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/22 18:27:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 12:49:59 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_rooms(t_ant_hill *ant_hill)
 
 	tmp = NULL;
 	tmp_rooms = ant_hill->rooms;
-	while (tmp_rooms->content)
+	while (tmp_rooms)
 	{
 		i = 1;
 		tmp = (char**)tmp_rooms->content;
@@ -43,14 +43,14 @@ static int	check_a(t_ant_hill *ant_hill, t_list *tmp_tubes)
 	t_list	*tmp_rooms;
 
 	tmp_rooms = ant_hill->rooms;
-	while (tmp_rooms->content)
+	while (tmp_rooms)
 	{
 		if (!ft_strcmp(((char**)tmp_tubes->content)[0], \
 					((char**)tmp_rooms->content)[0]))
 			break ;
 		tmp_rooms = tmp_rooms->next;
 	}
-	if (!tmp_rooms->content)
+	if (ft_lstcount(ant_hill->rooms) <= 1)
 		return (0);
 	return (1);
 }
@@ -60,14 +60,14 @@ static int	check_b(t_ant_hill *ant_hill, t_list *tmp_tubes)
 	t_list	*tmp_rooms;
 
 	tmp_rooms = ant_hill->rooms;
-	while (tmp_rooms->content)
+	while (tmp_rooms)
 	{
 		if (!ft_strcmp(((char**)tmp_tubes->content)[1], \
 					((char**)tmp_rooms->content)[0]))
 			break ;
 		tmp_rooms = tmp_rooms->next;
 	}
-	if (!tmp_rooms->content)
+	if (ft_lstcount(ant_hill->rooms) <= 1)
 		return (0);
 	return (1);
 }
@@ -77,7 +77,7 @@ static int	check_tubes(t_ant_hill *ant_hill)
 	t_list	*tmp_tubes;
 
 	tmp_tubes = ant_hill->tubes;
-	while (tmp_tubes->content)
+	while (tmp_tubes)
 	{
 		if (!check_a(ant_hill, tmp_tubes))
 			return (0);
