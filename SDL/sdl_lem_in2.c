@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:42:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/24 21:17:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	draw_dot(t_win *win, int x, int y, int div)
 	rect.h = 20;
 	if (div < 50 && div > 40)
 		SDL_SetRenderDrawColor(win->renderer, 154, 0, 0, 255);
-	else if (div < 60 && div > 50)
-		SDL_SetRenderDrawColor(win->renderer, 0, 128, 0, 255);
 	else
 		SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
@@ -97,25 +95,4 @@ void		draw_line(t_win *win, int *coords)
 		pos.x += move.x;
 		pos.y += move.y;
 	}
-}
-
-int			draw_ant(t_win *win, int x, int y)
-{
-	SDL_Surface		*surface;
-	SDL_Texture		*image;
-	SDL_Rect		rect;
-
-	surface = NULL;
-	image = NULL;
-	if (!(surface = SDL_LoadBMP("SDL/ant.bmp")))
-		return (0);
-	image = SDL_CreateTextureFromSurface(win->renderer, surface);
-	rect.x = x;
-	rect.y = y;
-	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
-	SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	SDL_FreeSurface(surface);
-	SDL_DestroyTexture(image);
-	SDL_RenderPresent(win->renderer);
-	return (1);
 }
