@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in2.c                                          :+:      :+:    :+:   */
+/*   lem_in_algo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/25 22:43:28 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:51:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
+static int	check_move(t_ant *ant, char **dest, t_ant_hill *ant_hill)
 {
 	t_list	*tmp_tubes;
 
@@ -110,7 +110,7 @@ int			algo(t_list *ants, t_ant_hill *ant_hill, t_win *win)
 	paths = NULL;
 	if (!(get_paths(ant_hill, &path, &paths, ant_hill->start)) || !paths)
 	{
-		ft_lstdel(&path, del2);
+		ft_lstdel(&path, del1);
 		free_paths(&paths);
 		ft_printf("NO_PATH_");
 		return (0);
@@ -123,7 +123,7 @@ paths_print(paths);
 	char	*test[3] = {"2\0", "5\0", "0\0"};
 	if (!move_ant(ants->content, test, ant_hill, win))
 	{
-		ft_lstdel(&path, del2);
+		ft_lstdel(&path, del1);
 		free_paths(&paths);
 		return (0);
 	}
@@ -131,12 +131,12 @@ paths_print(paths);
 	char	*test2[3] = {"1\0", "9\0", "2\0"};
 	if (!move_ant(ants->content, test2, ant_hill, win))
 	{
-		ft_lstdel(&path, del2);
+		ft_lstdel(&path, del1);
 		free_paths(&paths);
 		return (0);
 	}
 ///////
-	ft_lstdel(&path, del2);
+	ft_lstdel(&path, del1);
 	free_paths(&paths);
 	return (1);
 }
