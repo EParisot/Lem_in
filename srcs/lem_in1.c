@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/25 18:59:53 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:11:30 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,13 @@ int			lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av)
 			ft_printf("[-v] option ignored...\n");
 	}
 	print_input(ant_hill);
-	if (!(ants = init_ants(ant_hill)))
+	if (!(ants = init_ants(ant_hill)) || !(algo(ants, ant_hill, win)))
+	{
+		if (win)
+			w_destroy(win);
+		destroy_ants(ants);
 		return (0);
-	if (!(algo(ants, ant_hill, win)))
-		return (0);
+	}
 	if (win)
 		w_destroy(win);
 	destroy_ants(ants);

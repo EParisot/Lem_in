@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 13:02:21 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 22:14:47 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,10 +205,13 @@ int			algo(t_list *ants, t_ant_hill *ant_hill, t_win *win)
 
 	path = NULL;
 	paths = NULL;
-	if (!(get_paths(ant_hill, &path, &paths, ant_hill->start)))
+	if (!(get_paths(ant_hill, &path, &paths, ant_hill->start)) || !paths)
+	{
+		ft_lstdel(&path, del2);
+		free_paths(&paths);
+		ft_printf("NO_PATH_");
 		return (0);
-	if (!paths)
-		return (0);
+	}
 // DEBUG
 paths_print(paths);
 // TODO : execute lists instructions
@@ -216,7 +219,19 @@ paths_print(paths);
 	SDL_Delay(5000);
 	char	*test[3] = {"2\0", "5\0", "0\0"};
 	if (!move_ant(ants->content, test, ant_hill, win))
+	{
+		ft_lstdel(&path, del2);
+		free_paths(&paths);
 		return (0);
+	}
+	SDL_Delay(5000);
+	char	*test2[3] = {"1\0", "9\0", "2\0"};
+	if (!move_ant(ants->content, test2, ant_hill, win))
+	{
+		ft_lstdel(&path, del2);
+		free_paths(&paths);
+		return (0);
+	}
 ///////
 	ft_lstdel(&path, del2);
 	free_paths(&paths);
