@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 13:07:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:50:44 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static t_ant_hill	*init_ant_hill(t_ant_hill *ant_hill)
 {
-	if ((ant_hill = (t_ant_hill *)malloc(sizeof(t_ant_hill))) == NULL)
+	if (!(ant_hill = (t_ant_hill *)malloc(sizeof(t_ant_hill))))
 		return (NULL);
+	ant_hill->instru = NULL;
 	ant_hill->ant_nb = 0;
-	if ((ant_hill->rooms = ft_lstnew(NULL, 4 * sizeof(char*))) == NULL)
+	if (!(ant_hill->rooms = ft_lstnew(NULL, 4 * sizeof(char*))))
 		return (NULL);
-	if ((ant_hill->tubes = ft_lstnew(NULL, 3 * sizeof(char*))) == NULL)
+	if (!(ant_hill->tubes = ft_lstnew(NULL, 3 * sizeof(char*))))
 		return (NULL);
 	ant_hill->start = NULL;
 	ant_hill->end = NULL;
@@ -41,6 +42,7 @@ static void			del(void *content, size_t content_size)
 
 static void			del_ant_hill(t_ant_hill *ant_hill)
 {
+	ft_lstdel(&ant_hill->instru, del1);
 	ft_lstdel(&ant_hill->rooms, del);
 	ft_lstdel(&ant_hill->tubes, del);
 	free(ant_hill);
@@ -48,28 +50,13 @@ static void			del_ant_hill(t_ant_hill *ant_hill)
 
 void				print_input(t_ant_hill *ant_hill)
 {
-	t_list		*tmp_rooms;
-	t_list		*tmp_tubes;
+	t_list		*instru;
 
-	tmp_rooms = ant_hill->rooms;
-	tmp_tubes = ant_hill->tubes;
-	ft_printf("%d\n", ant_hill->ant_nb);
-	while (tmp_rooms)
+	instru = ant_hill->instru;
+	while (instru)
 	{
-		if (!ft_strcmp(((char**)tmp_rooms->content)[0], ant_hill->start))
-			ft_printf("##start\n");
-		else if (!ft_strcmp(((char**)tmp_rooms->content)[0], ant_hill->end))
-			ft_printf("##end\n");
-		ft_printf("%s %s %s\n", ((char**)tmp_rooms->content)[0], \
-				((char**)tmp_rooms->content)[1], \
-				((char**)tmp_rooms->content)[2]);
-		tmp_rooms = tmp_rooms->next;
-	}
-	while (tmp_tubes)
-	{
-		ft_printf("%s-%s\n", ((char**)tmp_tubes->content)[0], \
-				((char**)tmp_tubes->content)[1]);
-		tmp_tubes = tmp_tubes->next;
+		ft_printf("%s\n", (char*)instru->content);
+		instru = instru->next;
 	}
 	ft_putchar('\n');
 }
@@ -97,7 +84,7 @@ int					main(int ac, char **av)
 	if (check_ant_hill(ant_hill))
 		(!lem_in(ant_hill, win, ac, av)) ? ft_printf("ERROR\n") : 0;
 	else
-		ft_printf("ERROR\n");
+		ft_printf("INPUT_ERROR\n");
 	del_ant_hill(ant_hill);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 20:51:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 19:36:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 	tmp_lst = NULL;
 	tb = NULL;
 	if (line[0] != '#' && line[0] != 'L' && ft_isdigit(line[0]) && \
-	!ft_strchr(line, ' ') && !ft_strchr(line, '-'))
+			!ft_strchr(line, ' ') && !ft_strchr(line, '-'))
 		ant_hill->ant_nb = ft_atoi(line);
 	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, ' '))
 	{
@@ -69,9 +69,29 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 
 int			read_data(t_ant_hill *ant_hill, char *line)
 {
+	save_instru(ant_hill, line);
 	if (!(read1(ant_hill, line)))
 		return (0);
 	if (!(read2(ant_hill, line)))
 		return (0);
+	return (1);
+}
+
+int			save_instru(t_ant_hill *ant_hill, char *instru)
+{
+	t_list		*new;
+
+	new = NULL;
+	if (!(ant_hill->instru))
+	{
+		if (!(ant_hill->instru = ft_lstnew(instru, ft_strlen(instru) + 1)))
+			return (0);
+	}
+	else
+	{
+		if (!(new = ft_lstnew(instru, ft_strlen(instru) + 1)))
+			return (0);
+		ft_lstaddend(&(ant_hill->instru), new);
+	}
 	return (1);
 }

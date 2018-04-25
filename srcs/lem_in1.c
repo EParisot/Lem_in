@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/23 18:56:20 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/25 18:59:53 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_list	*init_ants(t_ant_hill *ant_hill)
 	return (ants);
 }
 
-static void		del1(void *content, size_t content_size)
+void			del1(void *content, size_t content_size)
 {
 	(void)content_size;
 	free(content);
