@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 21:09:53 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:09:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,23 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 	move.y = move.y / div;
 	while (div--)
 	{
-		clip.x = pos.x;
-		clip.y = pos.y;
-		clip.w = 32;
-		clip.h = 32;
+		clip.x = pos.x - 8;
+		clip.y = pos.y - 8;
+		clip.w = 52;
+		clip.h = 52;
 		draw_ant(win, (int)pos.x, (int)pos.y);
 		pos.x += move.x;
 		pos.y += move.y;
-		SDL_RenderCopy(win->renderer, win->bg, &clip, &clip);
+		(div) ? SDL_RenderCopy(win->renderer, win->bg, &clip, &clip) : 0;
 	}
 }
 
 int			draw_ant(t_win *win, int x, int y)
 {
-	SDL_Surface		*surface;
-	SDL_Texture		*image;
-	SDL_Rect		rect;
+	static SDL_Surface		*surface;
+	SDL_Texture				*image;
+	SDL_Rect				rect;
 
-	surface = NULL;
 	image = NULL;
 	if (!(surface = SDL_LoadBMP("SDL/ant.bmp")))
 		return (0);

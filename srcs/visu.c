@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 13:05:35 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:08:31 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	while (tmp)
 	{
 		draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
-					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
+					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), \
+					80);
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
 			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
@@ -123,26 +124,16 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 
 t_win			*visu(t_ant_hill *ant_hill, t_win *win)
 {
-	int			*max;
 	t_list		*tmp;
 	SDL_Rect	rect;
 
 	rect.x = 0;
 	rect.y = 0;
 	tmp = ant_hill->rooms;
-	max = get_max(ant_hill);
 	if (!(win = visu_tubes(ant_hill, win)))
 		return (NULL);
 	if (!visu_rooms(ant_hill, win))
 		return (NULL);
-	while (tmp)
-	{
-		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
-			draw_ant(win, 75 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
-			max[0]), 75 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]));
-		tmp = tmp->next;
-	}
-	free(max);
 	SDL_SetRenderTarget(win->renderer, NULL);
 	SDL_QueryTexture(win->bg, NULL, NULL, &rect.w, &rect.h);
 	SDL_RenderCopy(win->renderer, win->bg, NULL, &rect);

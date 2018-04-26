@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/25 22:52:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 18:44:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_win
 }					t_win;
 
 t_win*				w_init(void);
-void				draw(t_win *win, int x, int y);
+void				draw(t_win *win, int x, int y, int w);
 int					draw_text(t_win *win, char **room, int *max);
 void				draw_flag(t_win *win, int x, int y, int flag);
 void				draw_line(t_win *win, int *coords);
@@ -73,8 +73,10 @@ t_win				*visu(t_ant_hill *ant_hill, t_win *win);
 void				print_input(t_ant_hill *ant_hill);
 int					lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av);
 int					algo(t_list *ants, t_ant_hill *ant_hill, t_win *win);
-int					move_ant(t_ant *ant, char **dest, t_ant_hill *ant_hill, t_win *win);
+int					move_ant(t_ant *ant, char *dest, t_ant_hill *ant_hill, t_win *win);
 int					get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, char* pos);
+int					exec(t_ant_hill *ant_hill, t_list *paths, t_list *ants, \
+t_win *win);
 void				free_paths(t_list **paths);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 02:01:21 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 18:46:07 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ t_win	*w_init(void)
 	return (win);
 }
 
-void		draw(t_win *win, int x, int y)
+void		draw(t_win *win, int x, int y, int w)
 {
 	SDL_Rect		rect;
 
 	rect.x = x;
 	rect.y = y;
-	rect.h = 80;
-	rect.w = 80;
+	rect.h = w;
+	rect.w = w;
 	SDL_SetRenderDrawColor(win->renderer, 174, 154, 132, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 }
