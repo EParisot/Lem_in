@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 19:01:18 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:10:28 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	is_over(t_ant_hill *ant_hill, t_list *ants)
+static int	is_over(t_ant_hill *ant_hill, t_list *ants)
 {
 	t_list	*tmp_ants;
 
@@ -168,7 +168,9 @@ int			exec(t_ant_hill *ant_hill, t_list *paths, t_list *ants, t_win *win)
 		ft_putchar('\n');
 	}
 	if (win)
+	{
 		empty_start(win, ant_hill);
 		SDL_RenderPresent(win->renderer);
+	}
 	return (1);
 }
