@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 21:17:35 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 22:15:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,25 @@ int			draw_text(t_win *win, char **room, int *max)
 	return (1);
 }
 
-static void	draw_dot(t_win *win, int x, int y, int div)
+static void	draw_sign(t_win *win, int x, int y)
+{
+	static SDL_Surface	*surface;
+	SDL_Texture			*image;
+	SDL_Rect			rect;
+
+	image = NULL;
+	if (!(surface = SDL_LoadBMP("SDL/sign.bmp")))
+		return ;
+	image = SDL_CreateTextureFromSurface(win->renderer, surface);
+	rect.x = x;
+	rect.y = y;
+	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(image);
+}
+
+static void	draw_dot(t_win *win, int x, int y)
 {
 	SDL_Rect		rect;
 
@@ -69,10 +87,7 @@ static void	draw_dot(t_win *win, int x, int y, int div)
 	rect.y = y;
 	rect.w = 20;
 	rect.h = 20;
-	if (div < 50 && div > 40)
-		SDL_SetRenderDrawColor(win->renderer, 154, 0, 0, 255);
-	else
-		SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
+	SDL_SetRenderDrawColor(win->renderer, 154, 128, 101, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
@@ -81,6 +96,8 @@ void		draw_line(t_win *win, int *coords)
 	int			div;
 	t_2dvector	pos;
 	t_2dvector	move;
+	int			sign_x;
+	int			sign_y;
 
 	pos.x = coords[0];
 	pos.y = coords[1];
@@ -91,8 +108,14 @@ void		draw_line(t_win *win, int *coords)
 	move.y = move.y / div;
 	while (div--)
 	{
-		draw_dot(win, (int)pos.x, (int)pos.y, div);
+		draw_dot(win, (int)pos.x, (int)pos.y);
 		pos.x += move.x;
 		pos.y += move.y;
+		if (div == 65)
+		{
+			sign_x = (int)pos.x + 10;
+			sign_y = (int)pos.y + 10;
+		}
 	}
+	draw_sign(win, sign_x, sign_y);
 }

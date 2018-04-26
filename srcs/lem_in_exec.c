@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 19:10:28 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 22:14:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static int	biggest_path_len(t_list *paths)
 	return (max);
 }
 
-
 static int	room_is_empty(char *room, t_list *ants)
 {
 	t_list	*tmp_ants;
@@ -73,27 +72,6 @@ static int	room_is_empty(char *room, t_list *ants)
 		tmp_ants = tmp_ants->next;
 	}
 	return (1);
-}
-
-static void	empty_start(t_win *win, t_ant_hill *ant_hill)
-{
-	t_list	*tmp;
-	int		*max;
-
-	tmp = ant_hill->rooms;
-	if (!(max = get_max(ant_hill)))
-		return ;
-	while (tmp)
-	{
-		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
-		{
-			draw(win, 60 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
-			max[0]), 60 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), \
-			52);
-		}
-		tmp = tmp->next;
-	}
-	free(max);
 }
 
 int			exec(t_ant_hill *ant_hill, t_list *paths, t_list *ants, t_win *win)
@@ -166,11 +144,6 @@ int			exec(t_ant_hill *ant_hill, t_list *paths, t_list *ants, t_win *win)
 		}
 		tmp_ants = ants;
 		ft_putchar('\n');
-	}
-	if (win)
-	{
-		empty_start(win, ant_hill);
-		SDL_RenderPresent(win->renderer);
 	}
 	return (1);
 }

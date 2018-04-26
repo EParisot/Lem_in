@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 18:44:00 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 21:41:20 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 typedef struct		s_ant_hill
 {
-	t_list			*instru;
 	int				ant_nb;
 	char			*start;
 	char			*end;
+	t_list			*instru;
 	t_list			*rooms;
 	t_list			*tubes;
 }					t_ant_hill;
@@ -51,7 +51,7 @@ typedef struct		s_win
 }					t_win;
 
 t_win*				w_init(void);
-void				draw(t_win *win, int x, int y, int w);
+int					draw(t_win *win, int x, int y, int w);
 int					draw_text(t_win *win, char **room, int *max);
 void				draw_flag(t_win *win, int x, int y, int flag);
 void				draw_line(t_win *win, int *coords);

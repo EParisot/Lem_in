@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 18:46:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 21:47:14 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,25 @@ t_win	*w_init(void)
 	return (win);
 }
 
-void		draw(t_win *win, int x, int y, int w)
+int			draw(t_win *win, int x, int y, int w)
 {
+	SDL_Surface		*surface;
+	SDL_Texture		*image;
 	SDL_Rect		rect;
 
+	surface = NULL;
+	image = NULL;
+	if (!(surface = SDL_LoadBMP("SDL/room.bmp")))
+		return (0);
+	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = x;
 	rect.y = y;
 	rect.h = w;
 	rect.w = w;
-	SDL_SetRenderDrawColor(win->renderer, 174, 154, 132, 255);
-	SDL_RenderFillRect(win->renderer, &rect);
+	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(image);
+	return (1);
 }
 
 int			w_clear(t_win *win)

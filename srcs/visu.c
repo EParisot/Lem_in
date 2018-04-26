@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 19:08:31 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/26 21:42:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,19 @@ static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	tmp = ant_hill->rooms;
 	while (tmp)
 	{
-		draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]),\
-					50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), \
-					80);
+		if (!draw_text(win, (char**)tmp->content, max) || \
+		!draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]), \
+		50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 80))
+		{
+			free(max);
+			return (0);
+		}
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
 			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
 		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
 			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
 		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
-		if (!draw_text(win, (char**)tmp->content, max))
-			{
-				free(max);
-				return (0);
-			}
 		tmp = tmp->next;
 	}
 	free(max);
