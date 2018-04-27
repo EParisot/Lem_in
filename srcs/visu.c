@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:27:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 23:03:59 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int					*get_max(t_ant_hill *ant_hill)
+int				*get_max(t_ant_hill *ant_hill)
 {
 	t_list		*tmp;
 	int			*tab;
@@ -37,7 +37,7 @@ int					*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
+static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 {
 	t_list			*tmp;
 	int				*max;
@@ -66,7 +66,7 @@ static int			visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	return (1);
 }
 
-int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
+int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 {
 	t_list	*tmp;
 	int		*max;

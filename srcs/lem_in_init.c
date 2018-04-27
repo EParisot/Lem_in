@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:28:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 23:01:43 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		destroy_ants(t_list *ants)
 	ft_lstdel(&ants, del1);
 }
 
-int			lem_in(t_ant_hill *ant_hill, int ac, char **av)
+int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 {
 	if (ac > 1 && !ft_strcmp(av[1], "-v"))
 	{

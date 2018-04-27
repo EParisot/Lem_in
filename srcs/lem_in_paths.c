@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/25 23:06:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 23:02:02 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	is_in_lst(t_list *path, char *pos)
 	return (0);
 }
 
-int		lst_cpy(t_list **dest, t_list *src)
+int			lst_cpy(t_list **dest, t_list *src)
 {
 	t_list	*tmp;
 	t_list	*new;
@@ -97,7 +97,7 @@ static int	check_tubes(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 	return (1);
 }
 
-int		get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
+int			get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 			char *pos)
 {
 	if (!(*path))
