@@ -6,40 +6,41 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:43:50 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 22:54:30 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	exec2(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
+static int	find_move(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
 {
-	t_list	*p;
+	t_list	*path;
 
 	while (paths)
 	{
-		p = paths->content;
+		path = paths->content;
 		if (ft_lstcount((t_list*)paths->content) == min)
-			while (p && p->next)
+			while (path && path->next)
 			{
 				if (!ft_strcmp((char*)((t_ant*)ants->content)->room, \
-				(char*)p->content))
-					if (rie((char*)((t_list*)p->next)->content, a_h->ants) || \
-					!ft_strcmp((char*)((t_list*)p->next)->content, a_h->end))
+				(char*)path->content))
+					if (rie((char*)((t_list*)path->next)->content, a_h->ants) \
+					|| !ft_strcmp((char*)((t_list*)path->next)->content, \
+					a_h->end))
 					{
 						if (!move_ant(ants->content, \
-						(char*)((t_list*)p->next)->content, a_h, a_h->win))
+						(char*)((t_list*)path->next)->content, a_h, a_h->win))
 							return (-1);
 						return (1);
 					}
-				p = p->next;
+				path = path->next;
 			}
 		paths = paths->next;
 	}
 	return (0);
 }
 
-static int	exec1(t_ant_hill *ant_hill, t_list *paths, t_list *ants)
+static int	select_path(t_ant_hill *ant_hill, t_list *paths, t_list *ants)
 {
 	size_t	min;
 	size_t	max;
@@ -49,7 +50,7 @@ static int	exec1(t_ant_hill *ant_hill, t_list *paths, t_list *ants)
 	max = biggest_path_len(paths);
 	while (min <= max)
 	{
-		ret = exec2(ant_hill, paths, ants, min);
+		ret = find_move(ant_hill, paths, ants, min);
 		if (ret == 1)
 			return (1);
 		else if (ret == -1)
@@ -74,7 +75,7 @@ int			exec(t_ant_hill *ant_hill)
 			tmp_paths = ant_hill->paths;
 			if (ft_strcmp((char*)((t_ant*)tmp_ants->content)->room, \
 						ant_hill->end))
-				if (!exec1(ant_hill, tmp_paths, tmp_ants))
+				if (!select_path(ant_hill, tmp_paths, tmp_ants))
 					return (0);
 			tmp_ants = tmp_ants->next;
 		}
