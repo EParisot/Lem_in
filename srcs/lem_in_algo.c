@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 18:28:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 22:35:36 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,27 @@ void		free_paths(t_list **paths)
 	}
 }
 
-int			algo(t_list *ants, t_ant_hill *ant_hill, t_win *win)
+int			algo(t_ant_hill *ant_hill, t_win *win)
 {
 	t_list	*paths;
 	t_list	*path;
 
 	path = NULL;
 	paths = NULL;
-	if (!(get_paths(ant_hill, &path, &paths, ant_hill->start)) || !paths)
+	if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) || \
+	!ant_hill->paths)
 	{
 		ft_lstdel(&path, del1);
-		free_paths(&paths);
 		ft_printf("NO_PATH_");
 		return (0);
 	}
 	if (win)
 		SDL_Delay(2000);
-	if (!exec(ant_hill, paths, ants, win))
+	if (!exec(ant_hill))
 	{
 		ft_lstdel(&path, del1);
-		free_paths(&paths);
 		return (0);
 	}
 	ft_lstdel(&path, del1);
-	free_paths(&paths);
 	return (1);
 }

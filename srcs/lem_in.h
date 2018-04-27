@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 21:41:20 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/27 22:37:50 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 # include "../printf/srcs/ft_printf.h"
 # include "../GNL/get_next_line.h"
 
+typedef struct		s_win
+{
+	SDL_Window		*window;
+	SDL_Renderer	*renderer;
+	SDL_Texture		*bg;
+}					t_win;
+
+typedef struct		s_ant
+{
+	int				id;
+	char			*room;
+}					t_ant;
+
 typedef struct		s_ant_hill
 {
 	int				ant_nb;
@@ -29,26 +42,16 @@ typedef struct		s_ant_hill
 	t_list			*instru;
 	t_list			*rooms;
 	t_list			*tubes;
+	t_list			*ants;
+	t_list			*paths;
+	t_win			*win;
 }					t_ant_hill;
-
-typedef struct		s_ant
-{
-	int				id;
-	char			*room;
-}					t_ant;
 
 typedef struct		s_2dvector
 {
 	float			x;
 	float			y;
 }					t_2dvector;
-
-typedef struct		s_win
-{
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
-	SDL_Texture		*bg;
-}					t_win;
 
 t_win*				w_init(void);
 int					draw(t_win *win, int x, int y, int w);
@@ -59,7 +62,6 @@ int					draw_ant(t_win *win, int x, int y);
 void				anim_ant(t_win *win, char **src, char **dest, int* max);
 int					w_clear(t_win *win);
 void				w_destroy(t_win *win);
-
 int					read_data(t_ant_hill *ant_hill, char *line);
 int					save_instru(t_ant_hill *ant_hill, char *instru);
 int					read2(t_ant_hill *ant_hill, char *line);
@@ -71,12 +73,18 @@ int					*get_max(t_ant_hill *ant_hill);
 int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab);
 t_win				*visu(t_ant_hill *ant_hill, t_win *win);
 void				print_input(t_ant_hill *ant_hill);
-int					lem_in(t_ant_hill *ant_hill, t_win *win, int ac, char **av);
-int					algo(t_list *ants, t_ant_hill *ant_hill, t_win *win);
-int					move_ant(t_ant *ant, char *dest, t_ant_hill *ant_hill, t_win *win);
-int					get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, char* pos);
-int					exec(t_ant_hill *ant_hill, t_list *paths, t_list *ants, \
+void				destroy_ants(t_list *ants);
+int					lem_in(t_ant_hill *ant_hill, int ac, char **av);
+int					algo(t_ant_hill *ant_hill, t_win *win);
+int					move_ant(t_ant *ant, char *dest, t_ant_hill *ant_hill, \
 t_win *win);
+int					get_paths(t_ant_hill *ant_hill, t_list **path, \
+t_list **paths, char* pos);
+int					is_over(t_ant_hill *ant_hill, t_list *ants);
+int					smallest_path_len(t_list *paths);
+int					biggest_path_len(t_list *paths);
+int					rie(char *room, t_list *ants);
+int					exec(t_ant_hill *ant_hill);
 void				free_paths(t_list **paths);
 
 #endif
