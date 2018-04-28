@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 22:15:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 03:31:17 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int			draw_text(t_win *win, char **room, int *max)
 		return (0);
 	surface = TTF_RenderText_Solid(font, room[0], black);
 	text = SDL_CreateTextureFromSurface(win->renderer, surface);
-	rect.x = 50 + (1000 * ft_atoi(room[1]) / max[0]);
-	rect.y = 50 + (600 * ft_atoi(room[2]) / max[1]);
-	rect.w = 20;
+	rect.x = 55 + (1000 * ft_atoi(room[1]) / max[0]);
+	rect.y = 55 + (600 * ft_atoi(room[2]) / max[1]);
+	rect.w = ft_strlen(room[0]) * 10;
 	rect.h = 20;
 	SDL_RenderCopy(win->renderer, text, NULL, &rect);
 	TTF_CloseFont(font);
