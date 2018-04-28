@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 00:28:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 20:04:23 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int		smallest_path_len(t_list *paths)
 	t_list	*tmp;
 
 	tmp = paths;
-	min = ft_lstcount((t_list*)tmp->content);
+	min = ft_lstcount((t_list*)paths->content);
 	tmp = tmp->next;
 	while (tmp)
 	{
-		if (ft_lstcount((t_list*)tmp->content) < min)
+		if (tmp->content && ft_lstcount((t_list*)tmp->content) < min)
 			min = ft_lstcount((t_list*)tmp->content);
 		tmp = tmp->next;
 	}
@@ -60,7 +60,7 @@ int		biggest_path_len(t_list *paths)
 	return (max);
 }
 
-int	rie(char *room, t_list *ants)
+int		rie(char *room, t_list *ants)
 {
 	t_list	*tmp_ants;
 
