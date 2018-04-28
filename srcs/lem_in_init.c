@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 17:39:32 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 18:04:48 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 {
 	if (ac > 1 && !ft_strcmp(av[1], "-v"))
 	{
-		if (ant_hill->ant_nb < 100 && ft_lstcount(ant_hill->rooms) < 80)
+		if (ant_hill->ant_nb > 0 && ant_hill->ant_nb < 100 && \
+		ant_hill->rooms && ft_lstcount(ant_hill->rooms) > 1 && \
+		ft_lstcount(ant_hill->rooms) < 80 && ant_hill->tubes && \
+		ant_hill->start && ant_hill->end)
 			ant_hill->win = visu(ant_hill, ant_hill->win);
 		else
 			ft_printf("[-v] option ignored...\n");
