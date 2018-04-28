@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 02:00:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 03:05:15 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static t_ant_hill	*init_ant_hill(t_ant_hill *ant_hill)
 	ant_hill->paths = NULL;
 	ant_hill->instru = NULL;
 	ant_hill->ant_nb = nb;
-	if (!(ant_hill->rooms = ft_lstnew(NULL, 4 * sizeof(char*))))
-		return (NULL);
-	if (!(ant_hill->tubes = ft_lstnew(NULL, 3 * sizeof(char*))))
-		return (NULL);
+	ant_hill->rooms = NULL;
+	ant_hill->tubes = NULL;
 	ant_hill->start = NULL;
 	ant_hill->end = NULL;
 	ant_hill->win = NULL;
