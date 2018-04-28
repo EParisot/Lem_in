@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 03:13:21 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 06:13:57 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static int	read2_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 	tb = parse_rooms(line);
 	if (!ant_hill->rooms)
 	{
-		if (!(ant_hill->rooms = ft_lstnew(tb, 4 * sizeof(char*))) \
+		if (!(ant_hill->rooms = ft_lstnew(tb, 3 * sizeof(char*))) \
 		|| line[0] == 'L')
 			return (0);
 		ant_hill->start = tb[0];
 	}
 	else
 	{
-		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))) || line[0] == 'L')
+		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))) || line[0] == 'L')
 			return (0);
 		ft_lstaddend(&(ant_hill->rooms), tmp_lst);
 		ant_hill->start = tb[0];
@@ -40,14 +40,14 @@ static int	read2_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 	tb = parse_rooms(line);
 	if (!ant_hill->rooms->content)
 	{
-		if (!(ant_hill->rooms = ft_lstnew(tb, 4 * sizeof(char*))) \
+		if (!(ant_hill->rooms = ft_lstnew(tb, 3 * sizeof(char*))) \
 		|| line[0] == 'L')
 			return (0);
 		ant_hill->end = tb[0];
 	}
 	else
 	{
-		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))) || line[0] == 'L')
+		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))) || line[0] == 'L')
 			return (0);
 		ft_lstaddend(&(ant_hill->rooms), tmp_lst);
 		ant_hill->end = tb[0];

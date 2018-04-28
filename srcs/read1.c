@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 03:08:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 06:23:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static int	read1_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 	tb = parse_rooms(line);
 	if (!ant_hill->rooms)
 	{
-		if (!(ant_hill->rooms = ft_lstnew(tb, 4 * sizeof(char*))))
+		if (!(ant_hill->rooms = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
 	}
 	else
 	{
-		if (!(tmp_lst = ft_lstnew(tb, 4 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
 		ft_lstaddend(&(ant_hill->rooms), tmp_lst);
 		free(tb);
@@ -37,12 +37,12 @@ static int	read1_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 	tb = parse_tubes(line);
 	if (!ant_hill->tubes)
 	{
-		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
+		if (!(ant_hill->tubes = ft_lstnew(tb, 2 * sizeof(char*))))
 			return (0);
 	}
 	else
 	{
-		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew(tb, 2 * sizeof(char*))))
 			return (0);
 		ft_lstaddend(&(ant_hill->tubes), tmp_lst);
 		free(tb);
