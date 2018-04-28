@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 01:35:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 05:43:38 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		init_ant_bis(t_ant_hill *ant_hill, t_ant *curr_ant, \
 		{
 			if (!(tmp_ant = ft_lstnew(curr_ant, sizeof(t_ant))))
 				return (0);
-			ft_lstaddend(&(ant_hill->ants), tmp_ant);
+			ft_lstadd(&(ant_hill->ants), tmp_ant);
 		}
 		free(curr_ant);
 		n--;

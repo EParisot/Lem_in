@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 03:18:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 05:38:32 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static char	**parse_rooms_bis(char *line, char **tab)
 			return (NULL);
 		while (*line && *line != ' ')
 			tab[i][j++] = *(line++);
-
-		tab[i][j] = '\0';
+		tab[i][j] = '\0';//ft_printf("test = %s\n", tab[i]);
 		n = 0;
 		j = 0;
 		i++;
