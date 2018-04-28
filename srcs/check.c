@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/24 12:49:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 17:40:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static int	check_rooms(t_ant_hill *ant_hill)
 	tmp_rooms = ant_hill->rooms;
 	while (tmp_rooms)
 	{
-		i = 1;
+		i = 2;
 		tmp = (char**)tmp_rooms->content;
-		while (tmp[i])
+		while (i)
 		{
 			j = ft_strlen(tmp[i]);
 			while (--j >= 0)
 				if (!ft_isdigit(tmp[i][j]))
 					return (0);
-			i++;
+			i--;
 		}
 		tmp_rooms = tmp_rooms->next;
 	}
@@ -91,7 +91,7 @@ static int	check_tubes(t_ant_hill *ant_hill)
 int			check_ant_hill(t_ant_hill *ant_hill)
 {
 	if (ant_hill->ant_nb <= 0 || ft_lstcount(ant_hill->rooms) < 2 || \
-	!ant_hill->tubes->content || !ant_hill->start || !ant_hill->end)
+	!ant_hill->tubes || !ant_hill->start || !ant_hill->end)
 		return (0);
 	if (!check_rooms(ant_hill))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 06:07:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 17:46:02 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int			get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 			char *pos)
 {
 	if (!(*path))
-		if (!(*path = ft_lstnew(ant_hill->start, \
-		ft_strlen(ant_hill->start) + 1)))
+		if (!ant_hill->rooms || !ant_hill->start || !ant_hill->end || !(*path =\
+		ft_lstnew(ant_hill->start, ft_strlen(ant_hill->start) + 1)))
 			return (0);
 	if (!ft_strcmp(pos, ant_hill->end))
 	{
