@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:57:48 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 02:35:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 05:25:48 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 static int	ft_realloc(char **line, size_t size)
 {
 	size_t	len;
-	char	new[ft_strlen(*line) + 1];
+	char	*new;
 
 	len = 0;
 	if (*line)
 		len = ft_strlen(*line);
+	if (!(new = (char*)malloc(len + 1)))
+		return (0);
 	ft_memmove(new, *line, len);
 	free(*line);
 	if (!(*line = (char *)malloc((len + size) * sizeof(char))))
 		return (0);
 	ft_memmove(*line, new, len);
+	free(new);
 	return (1);
 }
 
@@ -54,6 +57,8 @@ static int	ft_read_line(char **line, char *rest, int i, int fd)
 
 	j = 0;
 	readen = 0;
+	if (!ft_realloc(line, BUFF_SIZE))
+		return (0);
 	while ((readen = read(fd, &buff, BUFF_SIZE)) > 0)
 	{
 		buff[readen] = '\0';
