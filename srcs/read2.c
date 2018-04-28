@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 06:13:57 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:22:21 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	read2_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 			return (0);
 		ft_lstaddend(&(ant_hill->rooms), tmp_lst);
 		ant_hill->start = tb[0];
-		free(tb);
 	}
+	free(tb);
 	return (1);
 }
 
@@ -51,8 +51,8 @@ static int	read2_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 			return (0);
 		ft_lstaddend(&(ant_hill->rooms), tmp_lst);
 		ant_hill->end = tb[0];
-		free(tb);
 	}
+	free(tb);
 	return (1);
 }
 
