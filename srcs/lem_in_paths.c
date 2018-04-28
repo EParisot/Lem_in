@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 23:02:02 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 06:07:10 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static int	end(t_list **path, t_list **paths)
 	new_path = NULL;
 	if (!(*paths))
 	{
-		if (!(*paths = ft_lstnew(*path, (ft_lstcount(*path) + 1) * \
+		if (!(*paths = ft_lstnew(*path, ft_lstcount(*path) * \
 		sizeof(t_list*))))
 			return (0);
 	}
 	else
 	{
-		if (!(new_path = ft_lstnew(*path, (ft_lstcount(*path) + 1) * \
+		if (!(new_path = ft_lstnew(*path, ft_lstcount(*path) * \
 		sizeof(t_list*))))
 			return (0);
 		ft_lstaddend(paths, new_path);

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 05:43:38 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 05:59:24 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		init_ant_bis(t_ant_hill *ant_hill, t_ant *curr_ant, \
 {
 	while (n)
 	{
-		if (!(curr_ant = (t_ant*)malloc(sizeof(t_ant*))))
+		if (!(curr_ant = (t_ant*)malloc(sizeof(t_ant))))
 			return (0);
 		curr_ant->id = n;
 		if (!(curr_ant->room = ft_strdup(ant_hill->start)))
