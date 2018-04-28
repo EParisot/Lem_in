@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:35:36 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 02:00:57 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int			algo(t_ant_hill *ant_hill, t_win *win)
 	!ant_hill->paths)
 	{
 		ft_lstdel(&path, del1);
-		ft_printf("NO_PATH_");
 		return (0);
 	}
 	if (win)

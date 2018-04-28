@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in_exec2.c                                     :+:      :+:    :+:   */
+/*   lem_in_exec_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:37:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 00:28:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		is_over(t_ant_hill *ant_hill, t_list *ants)
 	t_list	*tmp_ants;
 
 	tmp_ants = ants;
-	while (tmp_ants->content)
+	while (tmp_ants)
 	{
 		if (ft_strcmp((char*)((t_ant*)tmp_ants->content)->room, ant_hill->end))
 			return (0);
@@ -65,7 +65,7 @@ int	rie(char *room, t_list *ants)
 	t_list	*tmp_ants;
 
 	tmp_ants = ants;
-	while (tmp_ants->content)
+	while (tmp_ants)
 	{
 		if (!ft_strcmp((char*)((t_ant*)tmp_ants->content)->room, room))
 			return (0);

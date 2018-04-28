@@ -6,11 +6,38 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 23:01:43 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 01:35:52 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int		init_ant_bis(t_ant_hill *ant_hill, t_ant *curr_ant, \
+		t_list *tmp_ant, int n)
+{
+	while (n)
+	{
+		if (!(curr_ant = (t_ant*)malloc(sizeof(t_ant*))))
+			return (0);
+		curr_ant->id = n;
+		if (!(curr_ant->room = ft_strdup(ant_hill->start)))
+			return (0);
+		if (!ant_hill->ants)
+		{
+			if (!(ant_hill->ants = ft_lstnew(curr_ant, sizeof(t_ant))))
+				return (0);
+		}
+		else
+		{
+			if (!(tmp_ant = ft_lstnew(curr_ant, sizeof(t_ant))))
+				return (0);
+			ft_lstaddend(&(ant_hill->ants), tmp_ant);
+		}
+		free(curr_ant);
+		n--;
+	}
+	return (1);
+}
 
 static t_list	*init_ants(t_ant_hill *ant_hill)
 {
@@ -21,36 +48,24 @@ static t_list	*init_ants(t_ant_hill *ant_hill)
 	n = ant_hill->ant_nb;
 	curr_ant = NULL;
 	tmp_ant = NULL;
-	if (!(ant_hill->ants = ft_lstnew(NULL, sizeof(t_ant*))))
+	if (!init_ant_bis(ant_hill, curr_ant, tmp_ant, n))
 		return (NULL);
-	while (n)
-	{
-		if (!(curr_ant = (t_ant*)malloc(sizeof(t_ant*))))
-			return (NULL);
-		curr_ant->id = n;
-		if (!(curr_ant->room = ft_strdup(ant_hill->start)))
-			return (NULL);
-		if (!(tmp_ant = ft_lstnew(curr_ant, sizeof(t_ant))))
-			return (NULL);
-		ft_lstadd(&(ant_hill->ants), tmp_ant);
-		free(curr_ant);
-		n--;
-	}
 	return (ant_hill->ants);
 }
 
 void			del1(void *content, size_t content_size)
 {
 	(void)content_size;
-	free(content);
+	if (content)
+		free(content);
 }
 
-void		destroy_ants(t_list *ants)
+void			destroy_ants(t_list *ants)
 {
 	t_list	*tmp;
 
 	tmp = ants;
-	while (tmp->content)
+	while (tmp)
 	{
 		free(((t_ant*)tmp->content)->room);
 		tmp = tmp->next;

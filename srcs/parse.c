@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/20 00:24:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 01:09:18 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	**parse_rooms_bis(char *line, char **tab)
 	n = 0;
 	i = 0;
 	j = 0;
-	while (*line)
+	while (ft_isprint(*line))
 	{
 		while (*(line + n) && *(line + n) != ' ')
 			n++;
@@ -57,7 +57,7 @@ static char	**parse_tubes_bis(char *line, char **tab)
 	n = 0;
 	i = 0;
 	j = 0;
-	while (*line)
+	while (ft_isprint(*line))
 	{
 		while (*(line + n) && *(line + n) != '-')
 			n++;

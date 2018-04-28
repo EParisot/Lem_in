@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in_exec1.c                                     :+:      :+:    :+:   */
+/*   lem_in_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:54:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 00:25:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			exec(t_ant_hill *ant_hill)
 	tmp_paths = NULL;
 	while (!is_over(ant_hill, tmp_ants))
 	{
-		while (tmp_ants->content)
+		while (tmp_ants)
 		{
 			tmp_paths = ant_hill->paths;
 			if (ft_strcmp((char*)((t_ant*)tmp_ants->content)->room, \

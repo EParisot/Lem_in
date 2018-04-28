@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/27 22:31:05 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/28 02:00:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static t_ant_hill	*init_ant_hill(t_ant_hill *ant_hill)
 {
+	int		nb;
+
+	nb = 0;
 	if (!(ant_hill = (t_ant_hill *)malloc(sizeof(t_ant_hill))))
 		return (NULL);
 	ant_hill->ants = NULL;
 	ant_hill->paths = NULL;
 	ant_hill->instru = NULL;
-	ant_hill->ant_nb = 0;
+	ant_hill->ant_nb = nb;
 	if (!(ant_hill->rooms = ft_lstnew(NULL, 4 * sizeof(char*))))
 		return (NULL);
 	if (!(ant_hill->tubes = ft_lstnew(NULL, 3 * sizeof(char*))))
@@ -45,9 +48,10 @@ static void			del(void *content, size_t content_size)
 
 static void			del_ant_hill(t_ant_hill *ant_hill)
 {
-	ft_lstdel(&ant_hill->instru, del1);
 	ft_lstdel(&ant_hill->rooms, del);
 	ft_lstdel(&ant_hill->tubes, del);
+	if (ant_hill->instru)
+		ft_lstdel(&ant_hill->instru, del1);
 	if (ant_hill->ants)
 		destroy_ants(ant_hill->ants);
 	if (ant_hill->paths)
@@ -88,10 +92,10 @@ int					main(int ac, char **av)
 	}
 	free(*line);
 	free(line);
-	if (check_ant_hill(ant_hill))
-		(!lem_in(ant_hill, ac, av)) ? ft_printf("ERROR\n") : 0;
-	else
+	if (!check_ant_hill(ant_hill))
 		ft_printf("INPUT_ERROR\n");
+	if (!lem_in(ant_hill, ac, av))
+		ft_printf("NO_PATH_ERROR\n");
 	del_ant_hill(ant_hill);
 	return (0);
 }
