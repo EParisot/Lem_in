@@ -1,0 +1,12 @@
+3
+room1 5 0
+##start
+start 1 2
+##end
+end 9 2
+##rien
+room2 5 4
+start-room1
+#commentaire
+start-room2
+room2-end

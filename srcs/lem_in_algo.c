@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 03:01:14 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 00:12:23 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,46 @@ void		free_paths(t_list **paths)
 	}
 }
 
+static int	shortcut(t_ant_hill *ant_hill, t_list *path)
+{
+	t_list	*tmp;
+	t_list	*new;
+
+	tmp = ant_hill->tubes;
+	while (tmp)
+	{
+		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start) && \
+		!ft_strcmp(((char**)tmp->content)[1], ant_hill->end))
+		{
+			if (!(path = ft_lstnew(ant_hill->start, ft_strlen(ant_hill->start) \
+			* sizeof(char) + 1)))
+				return (0);
+			if (!(new = ft_lstnew(ant_hill->end, ft_strlen(ant_hill->end) \
+			* sizeof(char) + 1)))
+				return (0);
+			ft_lstaddend(&path, new);
+			if (!(ant_hill->paths = ft_lstnew(path, 3 * sizeof(t_list*))))
+				return (0);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int			algo(t_ant_hill *ant_hill, t_win *win)
 {
-	t_list	*paths;
 	t_list	*path;
 
 	path = NULL;
-	paths = NULL;
-	if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) || \
-	!ant_hill->paths)
+	if (!(shortcut(ant_hill, path)))
 	{
-		ft_lstdel(&path, del1);
-		return (0);
+		if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) || \
+				!ant_hill->paths)
+		{
+			ft_lstdel(&path, del1);
+			return (0);
+		}
 	}
 	if (win)
 		SDL_Delay(2000);
