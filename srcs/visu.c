@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 03:25:20 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:56:44 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	while (tmp)
 	{
 		if (!draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
-		max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 80) \
+		max[0]), 100 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 80) \
 		|| !draw_text(win, (char**)tmp->content, max))
 		{
 			free(max);
 			return (0);
 		}
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start))
-			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
-		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
+			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) \
+		/ max[0]), 100 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 1);
 		else if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->end))
-			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1])\
-		/ max[0]), 50 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
+			draw_flag(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) \
+		/ max[0]), 100 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 2);
 		tmp = tmp->next;
 	}
 	free(max);
@@ -78,7 +78,7 @@ int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 		if (!ft_strcmp(tube[0], ((char**)tmp->content)[0]))
 		{
 			tab[0] = 90 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]);
-			tab[1] = 90 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
+			tab[1] = 140 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
 		}
 		tmp = tmp->next;
 	}
@@ -88,7 +88,7 @@ int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
 		if (!ft_strcmp(tube[1], ((char**)tmp->content)[0]))
 		{
 			tab[2] = 90 + (1000 * ft_atoi(((char**)tmp->content)[1]) / max[0]);
-			tab[3] = 90 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
+			tab[3] = 140 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]);
 		}
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 19:09:09 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:52:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	*move_coords(char **src, char **dest, int *max)
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
 	coords[0] = 75 + (1000 * ft_atoi(src[1]) / max[0]);
-	coords[1] = 75 + (600 * ft_atoi(src[2]) / max[1]);
+	coords[1] = 125 + (600 * ft_atoi(src[2]) / max[1]);
 	coords[2] = 75 + (1000 * ft_atoi(dest[1]) / max[0]);
-	coords[3] = 75 + (600 * ft_atoi(dest[2]) / max[1]);
+	coords[3] = 125 + (600 * ft_atoi(dest[2]) / max[1]);
 	return (coords);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/26 21:47:14 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:32:49 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			draw(t_win *win, int x, int y, int w)
 		return (0);
 	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = x;
-	rect.y = y;
+	rect.y = y ;
 	rect.h = w;
 	rect.w = w;
 	SDL_RenderCopy(win->renderer, image, NULL, &rect);

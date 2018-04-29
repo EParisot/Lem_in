@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 17:50:45 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:52:17 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int			draw_text(t_win *win, char **room, int *max)
 		return (0);
 	surface = NULL;
 	text = NULL;
-	if (!(font = TTF_OpenFont("SDL/Arial.ttf", 20)))
+	if (!(font = TTF_OpenFont("SDL/Minecraft.ttf", 20)))
 		return (0);
 	surface = TTF_RenderText_Solid(font, room[0], black);
 	text = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = 55 + (1000 * ft_atoi(room[1]) / max[0]);
-	rect.y = 55 + (600 * ft_atoi(room[2]) / max[1]);
+	rect.y = 105 + (600 * ft_atoi(room[2]) / max[1]);
 	rect.w = ft_strlen(room[0]) * 10 + 10;
 	rect.h = 20;
 	SDL_RenderCopy(win->renderer, text, NULL, &rect);

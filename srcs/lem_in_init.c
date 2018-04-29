@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 18:04:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:49:14 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,14 @@ int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 		ant_hill->rooms && ft_lstcount(ant_hill->rooms) > 1 && \
 		ft_lstcount(ant_hill->rooms) < 80 && ant_hill->tubes && \
 		ant_hill->start && ant_hill->end)
-			ant_hill->win = visu(ant_hill, ant_hill->win);
+		{
+			if (!(ant_hill->win = visu(ant_hill, ant_hill->win)))
+			{
+				ft_printf("SDL_ERROR\n");
+				
+				return (0);
+			}
+		}
 		else
 			ft_printf("[-v] option ignored...\n");
 	}
