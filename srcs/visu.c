@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/29 17:47:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 18:39:56 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int				*get_max(t_ant_hill *ant_hill)
 			y_max = ft_atoi(((char**)tmp->content)[2]);
 		tmp = tmp->next;
 	}
+	if (x_max == 0)
+		x_max = 1;
+	if (y_max == 0)
+		y_max = 1;
 	tab[0] = x_max;
 	tab[1] = y_max;
 	return (tab);
