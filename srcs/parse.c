@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 06:23:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/29 17:56:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static char	**parse_tubes_bis(char *line, char **tab)
 		i++;
 		line++;
 	}
-	tab[i] = NULL;
 	return (tab);
 }
 
@@ -78,7 +77,7 @@ char		**parse_tubes(char *line)
 {
 	char	**tab;
 
-	if (!(tab = (char**)malloc(3 * sizeof(char*))))
+	if (!(tab = (char**)malloc(2 * sizeof(char*))))
 		return (NULL);
 	return (parse_tubes_bis(line, tab));
 }
