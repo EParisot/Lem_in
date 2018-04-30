@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:52:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 21:38:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int			draw_text(t_win *win, char **room, int *max)
 	rect.h = 20;
 	SDL_RenderCopy(win->renderer, text, NULL, &rect);
 	TTF_CloseFont(font);
-	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(text);
+	SDL_FreeSurface(surface);
 	TTF_Quit();
 	return (1);
 }
@@ -75,8 +75,8 @@ static void	draw_sign(t_win *win, int x, int y)
 	rect.y = y;
 	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
 	SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(image);
+	SDL_FreeSurface(surface);
 }
 
 static void	draw_dot(t_win *win, int x, int y)
