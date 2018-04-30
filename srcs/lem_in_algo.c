@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:42:22 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:46:39 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ static int	shortcut(t_ant_hill *ant_hill, t_list *path)
 	while (tmp)
 	{
 		if (!ft_strcmp(((char**)tmp->content)[0], ant_hill->start) && \
-		!ft_strcmp(((char**)tmp->content)[1], ant_hill->end))
+				!ft_strcmp(((char**)tmp->content)[1], ant_hill->end))
 		{
 			if (!(path = ft_lstnew(ant_hill->start, ft_strlen(ant_hill->start) \
-			* sizeof(char) + 1)))
+							* sizeof(char) + 1)))
 				return (0);
 			if (!(new = ft_lstnew(ant_hill->end, ft_strlen(ant_hill->end) \
-			* sizeof(char) + 1)))
+							* sizeof(char) + 1)))
 				return (0);
 			ft_lstaddend(&path, new);
 			if (!(ant_hill->paths = ft_lstnew(path, 3 * sizeof(t_list*))))

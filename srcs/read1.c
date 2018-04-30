@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/29 17:51:51 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:50:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 	return (1);
 }
 
-int	save_instru(t_ant_hill *ant_hill, char *instru)
+int			save_instru(t_ant_hill *ant_hill, char *instru)
 {
 	t_list		*new;
 

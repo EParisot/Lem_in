@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/29 12:49:14 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:48:36 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 	if (ac > 1 && !ft_strcmp(av[1], "-v"))
 	{
 		if (ant_hill->ant_nb > 0 && ant_hill->ant_nb < 100 && \
-		ant_hill->rooms && ft_lstcount(ant_hill->rooms) > 1 && \
-		ft_lstcount(ant_hill->rooms) < 80 && ant_hill->tubes && \
-		ant_hill->start && ant_hill->end)
+				ant_hill->rooms && ft_lstcount(ant_hill->rooms) > 1 && \
+				ft_lstcount(ant_hill->rooms) < 80 && ant_hill->tubes && \
+				ant_hill->start && ant_hill->end)
 		{
 			if (!(ant_hill->win = visu(ant_hill, ant_hill->win)))
 			{
 				ft_printf("SDL_ERROR\n");
-				
+
 				return (0);
 			}
 		}

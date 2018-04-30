@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 18:41:49 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:51:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	{
 		if (!draw(win, 50 + (1000 * ft_atoi(((char**)tmp->content)[1]) / \
 		max[0]), 100 + (600 * ft_atoi(((char**)tmp->content)[2]) / max[1]), 80)\
-		|| !draw_text(win, (char**)tmp->content, max))
+				|| !draw_text(win, (char**)tmp->content, max))
 		{
 			free(max);
 			return (0);
@@ -71,7 +71,7 @@ static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 }
 
 int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab, \
-int *max)
+		int *max)
 {
 	t_list	*tmp;
 

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:36:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:46:08 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ char				**parse_rooms(char *line);
 char				**parse_tubes(char *line);
 int					*get_max(t_ant_hill *ant_hill);
 int					*get_coords(t_ant_hill *ant_hill, char **tube, int *tab, \
-int *max);
+		int *max);
 t_win				*visu(t_ant_hill *ant_hill, t_win *win);
 void				print_input(t_ant_hill *ant_hill);
 void				destroy_ants(t_list *ants);
 int					lem_in(t_ant_hill *ant_hill, int ac, char **av);
 int					algo(t_ant_hill *ant_hill, t_win *win);
 int					move_ant(t_ant *ant, char *dest, t_ant_hill *ant_hill, \
-t_win *win);
+		t_win *win);
 int					get_paths(t_ant_hill *ant_hill, t_list **path, \
-t_list **paths, char* pos);
+		t_list **paths, char* pos);
 int					is_over(t_ant_hill *ant_hill, t_list *ants);
 int					smallest_path_len(t_list *paths);
 int					biggest_path_len(t_list *paths);

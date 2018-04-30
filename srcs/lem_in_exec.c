@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 20:21:04 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:47:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int	find_move(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
 			while (path && path->next)
 			{
 				if (!ft_strcmp((char*)((t_ant*)ants->content)->room, \
-				(char*)path->content))
+					(char*)path->content))
 					if (rie((char*)((t_list*)path->next)->content, a_h->ants) \
-					|| !ft_strcmp((char*)((t_list*)path->next)->content, \
-					a_h->end))
+						|| !ft_strcmp((char*)((t_list*)path->next)->content, \
+								a_h->end))
 					{
 						if (!move_ant(ants->content, \
 						(char*)((t_list*)path->next)->content, a_h, a_h->win))

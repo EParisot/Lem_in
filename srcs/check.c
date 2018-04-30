@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 17:40:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:45:47 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	check_tubes(t_ant_hill *ant_hill)
 int			check_ant_hill(t_ant_hill *ant_hill)
 {
 	if (ant_hill->ant_nb <= 0 || ft_lstcount(ant_hill->rooms) < 2 || \
-	!ant_hill->tubes || !ant_hill->start || !ant_hill->end)
+			!ant_hill->tubes || !ant_hill->start || !ant_hill->end)
 		return (0);
 	if (!check_rooms(ant_hill))
 		return (0);

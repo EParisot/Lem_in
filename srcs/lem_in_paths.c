@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 18:05:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:49:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ static int	end(t_list **path, t_list **paths)
 	if (!(*paths))
 	{
 		if (!(*paths = ft_lstnew(*path, ft_lstcount(*path) * \
-		sizeof(t_list*))))
+						sizeof(t_list*))))
 			return (0);
 	}
 	else
 	{
 		if (!(new_path = ft_lstnew(*path, ft_lstcount(*path) * \
-		sizeof(t_list*))))
+						sizeof(t_list*))))
 			return (0);
 		ft_lstaddend(paths, new_path);
 	}
@@ -80,7 +80,7 @@ static int	end(t_list **path, t_list **paths)
 }
 
 static int	check_tubes(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
-			char *pos)
+		char *pos)
 {
 	t_list	*tmp_tubes;
 	t_list	*new_pos;
@@ -92,10 +92,10 @@ static int	check_tubes(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 	while (tmp_tubes)
 	{
 		if (!ft_strcmp(pos, ((char**)tmp_tubes->content)[0]) && \
-		is_good_move(*path, ((char**)tmp_tubes->content)[1], ant_hill))
+				is_good_move(*path, ((char**)tmp_tubes->content)[1], ant_hill))
 		{
 			if (!(new_pos = ft_lstnew(((char**)tmp_tubes->content)[1], \
-			ft_strlen(((char**)tmp_tubes->content)[1]) + 1)))
+							ft_strlen(((char**)tmp_tubes->content)[1]) + 1)))
 				return (0);
 			if (!lst_cpy(&tmp_path, *path))
 				return (0);
@@ -110,11 +110,11 @@ static int	check_tubes(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 }
 
 int			get_paths(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
-			char *pos)
+		char *pos)
 {
 	if (!(*path))
 		if (!ant_hill->rooms || !ant_hill->start || !ant_hill->end || !(*path =\
-		ft_lstnew(ant_hill->start, ft_strlen(ant_hill->start) + 1)))
+					ft_lstnew(ant_hill->start, ft_strlen(ant_hill->start) + 1)))
 			return (0);
 	if (!ft_strcmp(pos, ant_hill->end))
 	{

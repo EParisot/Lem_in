@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 18:46:22 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:52:16 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/lem_in.h"
 
-t_win	*w_init(void)
+t_win		*w_init(void)
 {
 	t_win			*win;
 
