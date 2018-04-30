@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 22:24:08 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:48:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,28 @@ t_win		*w_init(void)
 		SDL_Quit();
 		return (NULL);
 	}
+	SDL_SetRenderTarget(win->renderer, win->bg);
+	if (!w_clear(win))
+		return (NULL);
 	return (win);
+}
+
+int			w_clear(t_win *win)
+{
+	SDL_Surface		*surface;
+	SDL_Texture		*image;
+	SDL_Rect		rect;
+
+	if (!(surface = SDL_LoadBMP("SDL/minecraft.bmp")))
+		return (0);
+	image = SDL_CreateTextureFromSurface(win->renderer, surface);
+	rect.x = 0;
+	rect.y = 0;
+	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_DestroyTexture(image);
+	SDL_FreeSurface(surface);
+	return (1);
 }
 
 int			draw(t_win *win, int x, int y, int w)
@@ -50,24 +71,6 @@ int			draw(t_win *win, int x, int y, int w)
 	rect.y = y ;
 	rect.h = w;
 	rect.w = w;
-	SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	SDL_DestroyTexture(image);
-	SDL_FreeSurface(surface);
-	return (1);
-}
-
-int			w_clear(t_win *win)
-{
-	SDL_Surface		*surface;
-	SDL_Texture		*image;
-	SDL_Rect		rect;
-
-	if (!(surface = SDL_LoadBMP("SDL/minecraft.bmp")))
-		return (0);
-	image = SDL_CreateTextureFromSurface(win->renderer, surface);
-	rect.x = 0;
-	rect.y = 0;
-	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
 	SDL_RenderCopy(win->renderer, image, NULL, &rect);
 	SDL_DestroyTexture(image);
 	SDL_FreeSurface(surface);

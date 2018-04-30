@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 22:24:05 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 22:45:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,6 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 	int			*max;
 
 	tmp = ant_hill->tubes;
-	if (!(win = w_init()))
-		return (NULL);
-	SDL_SetRenderTarget(win->renderer, win->bg);
-	if (!w_clear(win))
-		return (NULL);
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
 	while (tmp)
@@ -129,6 +124,8 @@ t_win			*visu(t_ant_hill *ant_hill, t_win *win)
 	t_list		*tmp;
 	SDL_Rect	rect;
 
+	if (!(win = w_init()))
+		return (NULL);
 	rect.x = 0;
 	rect.y = 0;
 	tmp = ant_hill->rooms;
