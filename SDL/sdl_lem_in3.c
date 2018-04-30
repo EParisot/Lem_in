@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/29 12:52:11 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 19:42:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 	div = ABS_MAX(coords[2] - coords[0], coords[3] - coords[1]) / 4;
 	move.x = move.x / div;
 	move.y = move.y / div;
-	while (div--)
+	while (div-- && draw_ant(win, (int)pos.x, (int)pos.y))
 	{
 		clip.x = pos.x - 8;
 		clip.y = pos.y - 8;
 		clip.w = 52;
 		clip.h = 52;
-		draw_ant(win, (int)pos.x, (int)pos.y);
 		pos.x += move.x;
 		pos.y += move.y;
 		(div) ? SDL_RenderCopy(win->renderer, win->bg, &clip, &clip) : 0;
 	}
+	free(coords);
 }
 
 int			draw_ant(t_win *win, int x, int y)

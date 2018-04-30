@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/29 18:39:56 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 18:41:49 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,12 @@ static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
 	return (1);
 }
 
-int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab)
+int				*get_coords(t_ant_hill *ant_hill, char **tube, int *tab, \
+int *max)
 {
 	t_list	*tmp;
-	int		*max;
 
 	tmp = ant_hill->rooms;
-	max = get_max(ant_hill);
 	while (tmp)
 	{
 		if (!ft_strcmp(tube[0], ((char**)tmp->content)[0]))
@@ -103,23 +102,23 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 {
 	t_list		*tmp;
 	int			*coords;
+	int			*max;
 
 	tmp = ant_hill->tubes;
 	if (!(win = w_init()))
 		return (NULL);
 	SDL_SetRenderTarget(win->renderer, win->bg);
+	if (!w_clear(win))
+		return (NULL);
 	if (!(coords = (int*)malloc(4 * sizeof(int))))
 		return (NULL);
-	if (!w_clear(win))
-	{
-		free(coords);
-		return (NULL);
-	}
 	while (tmp)
 	{
-		coords = get_coords(ant_hill, (char**)tmp->content, coords);
+		max = get_max(ant_hill);
+		coords = get_coords(ant_hill, (char**)tmp->content, coords, max);
 		draw_line(win, coords);
 		tmp = tmp->next;
+		free(max);
 	}
 	free(coords);
 	return (win);

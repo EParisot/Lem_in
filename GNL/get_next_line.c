@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:57:48 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/28 05:25:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/30 17:01:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ static int	ft_read_line(char **line, char *rest, int i, int fd)
 
 	j = 0;
 	readen = 0;
-	if (!ft_realloc(line, BUFF_SIZE))
-		return (0);
 	while ((readen = read(fd, &buff, BUFF_SIZE)) > 0)
 	{
 		buff[readen] = '\0';
