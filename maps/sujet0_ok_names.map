@@ -1,0 +1,25 @@
+5
+##start
+start 23 3
+room2 16 7
+#commentaire
+room3 16 3
+room4 16 5
+room5 9 3
+room6 1 5
+room7 4 8
+##end
+end 9 5
+room4-end
+room6-end
+start-room3
+room4-room3
+room2-room5
+room3-room5
+#autre commentaire
+room2-room4
+start-room2
+room7-room6
+room2-room7
+room7-room4
+room5-room6
