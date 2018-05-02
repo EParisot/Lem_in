@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:52:53 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 00:27:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ int			draw_ant(t_win *win, int x, int y)
 	rect.x = x;
 	rect.y = y;
 	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
+	//TEST
+	SDL_RenderSetClipRect(win->renderer, &rect);
+	//////
 	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_RenderPresent(win->renderer);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(image);
-	SDL_RenderPresent(win->renderer);
 	return (1);
 }
