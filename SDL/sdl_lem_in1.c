@@ -6,11 +6,30 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 22:48:35 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 12:46:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/lem_in.h"
+
+static int	load_img(t_win *win)
+{
+	SDL_Surface	*surface;
+
+	if ((surface = SDL_LoadBMP("SDL/room.bmp")))
+	{
+		win->room = SDL_CreateTextureFromSurface(win->renderer, surface);
+		SDL_FreeSurface(surface);
+	}
+	else
+		return (0);
+	if ((surface = SDL_LoadBMP("SDL/ant.bmp")))
+	{
+		win->ant = SDL_CreateTextureFromSurface(win->renderer, surface);
+		SDL_FreeSurface(surface);
+	}
+	return (1);
+}
 
 t_win		*w_init(void)
 {
@@ -28,9 +47,8 @@ t_win		*w_init(void)
 			SDL_RENDERER_PRESENTVSYNC);
 	win->bg = SDL_CreateTexture(win->renderer, SDL_PIXELFORMAT_RGBA8888, \
 			SDL_TEXTUREACCESS_TARGET, 1200, 800);
-	if (!win->window || !win->renderer || !win->bg)
+	if (!win->window || !win->renderer || !win->bg || !load_img(win))
 	{
-		ft_printf("SDL_ERROR\n");
 		SDL_Quit();
 		return (NULL);
 	}
@@ -53,6 +71,7 @@ int			w_clear(t_win *win)
 	rect.y = 0;
 	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
 	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_RenderPresent(win->renderer);
 	SDL_DestroyTexture(image);
 	SDL_FreeSurface(surface);
 	return (1);
@@ -60,20 +79,13 @@ int			w_clear(t_win *win)
 
 int			draw(t_win *win, int x, int y, int w)
 {
-	SDL_Surface		*surface;
-	SDL_Texture		*image;
 	SDL_Rect		rect;
 
-	if (!(surface = SDL_LoadBMP("SDL/room.bmp")))
-		return (0);
-	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = x;
-	rect.y = y ;
+	rect.y = y;
 	rect.h = w;
 	rect.w = w;
-	SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	SDL_DestroyTexture(image);
-	SDL_FreeSurface(surface);
+	SDL_RenderCopy(win->renderer, win->room, NULL, &rect);
 	return (1);
 }
 
@@ -84,6 +96,8 @@ void		w_destroy(t_win *win)
 	{
 		SDL_DestroyRenderer(win->renderer);
 		SDL_DestroyWindow(win->window);
+		SDL_DestroyTexture(win->ant);
+		SDL_DestroyTexture(win->room);
 	}
 	SDL_Quit();
 }

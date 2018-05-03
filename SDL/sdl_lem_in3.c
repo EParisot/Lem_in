@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 00:27:04 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 12:46:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,12 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 
 int			draw_ant(t_win *win, int x, int y)
 {
-	static SDL_Surface		*surface;
-	SDL_Texture				*image;
 	SDL_Rect				rect;
 
-	image = NULL;
-	if (!(surface = SDL_LoadBMP("SDL/ant.bmp")))
-		return (0);
-	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = x;
 	rect.y = y;
-	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
-	//TEST
-	SDL_RenderSetClipRect(win->renderer, &rect);
-	//////
-	SDL_RenderCopy(win->renderer, image, NULL, &rect);
+	SDL_QueryTexture(win->ant, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(win->renderer, win->ant, NULL, &rect);
 	SDL_RenderPresent(win->renderer);
-	SDL_FreeSurface(surface);
-	SDL_DestroyTexture(image);
 	return (1);
 }

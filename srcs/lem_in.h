@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:46:08 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 11:36:24 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct		s_win
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	SDL_Texture		*bg;
+	SDL_Texture		*room;
+	SDL_Texture		*ant;
 }					t_win;
 
 typedef struct		s_ant
