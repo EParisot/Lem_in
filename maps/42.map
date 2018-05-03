@@ -6,7 +6,6 @@ ft_printf 3200 3000
 Get_Next_line 3000 3000
 libft 2550 3000
 Piscine_Reloaded 2350 3000
-##end
 KFS_4 1850 1700
 KFS_3 1950 1800
 KFS_2 2050 1700
@@ -21,6 +20,7 @@ RT 3000 3900
 21sh 3000 2300
 Matcha 2500 2500
 Piscine_OCaml 1872 3410
+##end
 Corewar 3900 3000
 Piscine_PHP 2600 2745
 Piscine_Ruby_on_Rails 1850 2750

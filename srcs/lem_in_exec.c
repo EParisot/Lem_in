@@ -6,11 +6,40 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:47:54 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:43:55 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	print_ants(t_ant_hill *ant_hill)
+{
+	t_list	*tmp;
+	t_list	*tmp_rooms;
+	int		*max;
+
+	max = get_max(ant_hill);
+	tmp = ant_hill->ants;
+	while (tmp)
+	{
+		tmp_rooms = ant_hill->rooms;
+		while (tmp_rooms)
+		{
+			if (!ft_strcmp(((char**)tmp_rooms->content)[0], \
+						((t_ant*)tmp->content)->room))
+			{
+				SDL_SetRenderTarget(ant_hill->win->renderer, ant_hill->win->bg);
+				draw_ant(ant_hill->win, 76 + (1000 * ft_atoi(((char**)tmp_rooms\
+				->content)[1]) / max[0]), 126 + (600 * \
+				ft_atoi(((char**)tmp_rooms->content)[2]) / max[1]));
+				SDL_SetRenderTarget(ant_hill->win->renderer, NULL);
+			}
+			tmp_rooms = tmp_rooms->next;
+		}
+		tmp = tmp->next;
+	}
+	free(max);
+}
 
 static int	find_move(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
 {
@@ -31,6 +60,7 @@ static int	find_move(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
 						if (!move_ant(ants->content, \
 						(char*)((t_list*)path->next)->content, a_h, a_h->win))
 							return (-1);
+						print_ants(a_h);
 						return (1);
 					}
 				path = path->next;

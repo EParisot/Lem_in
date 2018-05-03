@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/22 02:47:23 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 12:46:35 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 20:04:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,28 @@ static int	*move_coords(char **src, char **dest, int *max)
 	return (coords);
 }
 
+static void	clear_ant(t_win *win, SDL_Rect clip)
+{
+	SDL_RenderClear(win->renderer);
+	SDL_RenderCopy(win->renderer, win->bg, NULL, NULL);
+	SDL_RenderCopy(win->renderer, win->bg, &clip, &clip);
+}
+
+static void	clear_room(t_win *win, int *coords)
+{
+	SDL_SetRenderTarget(win->renderer, win->bg);
+	draw(win, (int)coords[0] - 26, (int)coords[1] - 26, 80);
+	SDL_SetRenderTarget(win->renderer, NULL);
+}
+
 void		anim_ant(t_win *win, char **src, char **dest, int *max)
 {
-	int		*coords;
+	const int	*coords = move_coords(src, dest, max);
 	int			div;
 	t_2dvector	pos;
 	t_2dvector	move;
 	SDL_Rect	clip;
 
-	coords = move_coords(src, dest, max);
 	pos.x = coords[0];
 	pos.y = coords[1];
 	move.x = coords[2] - coords[0];
@@ -41,6 +54,7 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 	div = ABS_MAX(coords[2] - coords[0], coords[3] - coords[1]) / 4;
 	move.x = move.x / div;
 	move.y = move.y / div;
+	clear_room(win, (int*)coords);
 	while (div-- && draw_ant(win, (int)pos.x, (int)pos.y))
 	{
 		clip.x = pos.x - 8;
@@ -49,14 +63,14 @@ void		anim_ant(t_win *win, char **src, char **dest, int *max)
 		clip.h = 52;
 		pos.x += move.x;
 		pos.y += move.y;
-		(div) ? SDL_RenderCopy(win->renderer, win->bg, &clip, &clip) : 0;
+		clear_ant(win, clip);
 	}
-	free(coords);
+	free((int*)coords);
 }
 
 int			draw_ant(t_win *win, int x, int y)
 {
-	SDL_Rect				rect;
+	SDL_Rect	rect;
 
 	rect.x = x;
 	rect.y = y;

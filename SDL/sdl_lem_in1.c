@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 12:46:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 19:08:20 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 static int	load_img(t_win *win)
 {
-	SDL_Surface	*surface;
+	SDL_Surface	*surf1;
+	SDL_Surface	*surf2;
 
-	if ((surface = SDL_LoadBMP("SDL/room.bmp")))
-	{
-		win->room = SDL_CreateTextureFromSurface(win->renderer, surface);
-		SDL_FreeSurface(surface);
-	}
-	else
+	if (!(surf1 = SDL_LoadBMP("SDL/room.bmp")))
 		return (0);
-	if ((surface = SDL_LoadBMP("SDL/ant.bmp")))
-	{
-		win->ant = SDL_CreateTextureFromSurface(win->renderer, surface);
-		SDL_FreeSurface(surface);
-	}
+	if (!(win->room = SDL_CreateTextureFromSurface(win->renderer, surf1)))
+		return (0);
+	if (!(surf2 = SDL_LoadBMP("SDL/ant.bmp")))
+		return (0);
+	if (!(win->ant = SDL_CreateTextureFromSurface(win->renderer, surf2)))
+		return (0);
 	return (1);
 }
 
@@ -86,6 +83,7 @@ int			draw(t_win *win, int x, int y, int w)
 	rect.h = w;
 	rect.w = w;
 	SDL_RenderCopy(win->renderer, win->room, NULL, &rect);
+	SDL_RenderPresent(win->renderer);
 	return (1);
 }
 
@@ -96,8 +94,6 @@ void		w_destroy(t_win *win)
 	{
 		SDL_DestroyRenderer(win->renderer);
 		SDL_DestroyWindow(win->window);
-		SDL_DestroyTexture(win->ant);
-		SDL_DestroyTexture(win->room);
 	}
 	SDL_Quit();
 }

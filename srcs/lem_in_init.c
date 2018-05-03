@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:48:36 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 18:49:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 			if (!(ant_hill->win = visu(ant_hill, ant_hill->win)))
 			{
 				ft_printf("SDL_ERROR\n");
-
 				return (0);
 			}
 		}
