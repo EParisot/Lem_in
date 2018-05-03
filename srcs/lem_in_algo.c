@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:46:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 20:10:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_move(t_ant *ant, char *dest, t_ant_hill *ant_hill)
 	{
 		if (!ft_strcmp(((char**)tmp_tubes->content)[0], ant->room))
 			if (!ft_strcmp(((char**)tmp_tubes->content)[1], dest))
-				break;
+				break ;
 		tmp_tubes = tmp_tubes->next;
 	}
 	if (!tmp_tubes)
@@ -110,7 +110,7 @@ int			algo(t_ant_hill *ant_hill, t_win *win)
 	path = NULL;
 	if (!(shortcut(ant_hill, path)))
 	{
-		if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) || \
+		if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) ||\
 				!ant_hill->paths)
 		{
 			ft_lstdel(&path, del1);

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 18:20:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 20:14:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				*get_max(t_ant_hill *ant_hill)
 	return (tab);
 }
 
-static int		visu_rooms(t_ant_hill *ant_hill,  t_win *win)
+static int		visu_rooms(t_ant_hill *ant_hill, t_win *win)
 {
 	t_list			*tmp;
 	int				*max;

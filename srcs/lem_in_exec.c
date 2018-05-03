@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 19:43:55 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/03 20:09:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	print_ants(t_ant_hill *ant_hill)
 						((t_ant*)tmp->content)->room))
 			{
 				SDL_SetRenderTarget(ant_hill->win->renderer, ant_hill->win->bg);
-				draw_ant(ant_hill->win, 76 + (1000 * ft_atoi(((char**)tmp_rooms\
-				->content)[1]) / max[0]), 126 + (600 * \
+				draw_ant(ant_hill->win, 76 + (1000 * ft_atoi(((char**)\
+				tmp_rooms->content)[1]) / max[0]), 126 + (600 * \
 				ft_atoi(((char**)tmp_rooms->content)[2]) / max[1]));
 				SDL_SetRenderTarget(ant_hill->win->renderer, NULL);
 			}
