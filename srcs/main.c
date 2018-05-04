@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 16:00:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:29:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void				print_input(t_ant_hill *ant_hill)
 		ft_printf("%s\n", (char*)instru->content);
 		instru = instru->next;
 	}
-	ft_putchar('\n');
 }
 
 int					main(int ac, char **av)

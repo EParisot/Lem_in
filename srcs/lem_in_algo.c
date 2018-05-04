@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 20:10:19 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 12:07:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static int	check_move(t_ant *ant, char *dest, t_ant_hill *ant_hill)
 	{
 		if (!ft_strcmp(((char**)tmp_tubes->content)[0], ant->room))
 			if (!ft_strcmp(((char**)tmp_tubes->content)[1], dest))
+				break ;
+		if (((char**)tmp_tubes->content)[2][0] == '0' && \
+			!ft_strcmp(((char**)tmp_tubes->content)[1], ant->room))
+			if (!ft_strcmp(((char**)tmp_tubes->content)[0], dest))
 				break ;
 		tmp_tubes = tmp_tubes->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:50:04 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 11:38:01 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ static int	read1_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 static int	read1_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 		char **tb)
 {
-	tb = parse_tubes(line);
+	tb = parse_tubes(line, 0);
 	if (!ant_hill->tubes)
 	{
-		if (!(ant_hill->tubes = ft_lstnew(tb, 2 * sizeof(char*))))
+		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
 	}
 	else
 	{
-		if (!(tmp_lst = ft_lstnew(tb, 2 * sizeof(char*))))
+		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
 		ft_lstaddend(&(ant_hill->tubes), tmp_lst);
 	}

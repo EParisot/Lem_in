@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:39:14 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 20:09:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 15:57:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	find_move(t_ant_hill *a_h, t_list *paths, t_list *ants, size_t min)
 						if (!move_ant(ants->content, \
 						(char*)((t_list*)path->next)->content, a_h, a_h->win))
 							return (-1);
-						print_ants(a_h);
+						(a_h->win) ? print_ants(a_h) : 0;
 						return (1);
 					}
 				path = path->next;

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:49:19 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:22:02 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static int	is_good_move(t_list *path, char *pos, t_ant_hill *ant_hill)
 	{
 		if (!ft_strcmp(pos, ((char**)tmp_tubes->content)[0]))
 			return (1);
+		if (((char**)tmp_tubes->content)[2][0] == '0' && \
+				!ft_strcmp(pos, ((char**)tmp_tubes->content)[1]))
+			return (1);
 		tmp_tubes = tmp_tubes->next;
 	}
 	if (!tmp_tubes)
@@ -38,44 +41,20 @@ static int	is_good_move(t_list *path, char *pos, t_ant_hill *ant_hill)
 	return (1);
 }
 
-int			lst_cpy(t_list **dest, t_list *src)
+static int	check_tubes2(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
+		char *tmp)
 {
-	t_list	*tmp;
-	t_list	*new;
+	t_list	*new_pos;
+	t_list	*tmp_path;
 
-	tmp = src;
-	new = NULL;
-	if (!(*dest = ft_lstnew(tmp->content, ft_strlen(tmp->content) + 1)))
+	if (!(new_pos = ft_lstnew(tmp, ft_strlen(tmp) + 1)))
 		return (0);
-	tmp = tmp->next;
-	while (tmp)
-	{
-		if (!(new = ft_lstnew(tmp->content, ft_strlen(tmp->content) + 1)))
-			return (0);
-		ft_lstaddend(dest, new);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-static int	end(t_list **path, t_list **paths)
-{
-	t_list	*new_path;
-
-	new_path = NULL;
-	if (!(*paths))
-	{
-		if (!(*paths = ft_lstnew(*path, ft_lstcount(*path) * \
-						sizeof(t_list*))))
-			return (0);
-	}
-	else
-	{
-		if (!(new_path = ft_lstnew(*path, ft_lstcount(*path) * \
-						sizeof(t_list*))))
-			return (0);
-		ft_lstaddend(paths, new_path);
-	}
+	if (!lst_cpy(&tmp_path, *path))
+		return (0);
+	ft_lstaddend(path, new_pos);
+	get_paths(ant_hill, path, paths, tmp);
+	free(*path);
+	*path = tmp_path;
 	return (1);
 }
 
@@ -83,26 +62,24 @@ static int	check_tubes(t_ant_hill *ant_hill, t_list **path, t_list **paths, \
 		char *pos)
 {
 	t_list	*tmp_tubes;
-	t_list	*new_pos;
-	t_list	*tmp_path;
 
 	tmp_tubes = ant_hill->tubes;
-	new_pos = NULL;
-	tmp_path = NULL;
 	while (tmp_tubes)
 	{
 		if (!ft_strcmp(pos, ((char**)tmp_tubes->content)[0]) && \
 				is_good_move(*path, ((char**)tmp_tubes->content)[1], ant_hill))
 		{
-			if (!(new_pos = ft_lstnew(((char**)tmp_tubes->content)[1], \
-							ft_strlen(((char**)tmp_tubes->content)[1]) + 1)))
+			if (!check_tubes2(ant_hill, path, paths, \
+						((char**)tmp_tubes->content)[1]))
 				return (0);
-			if (!lst_cpy(&tmp_path, *path))
+		}
+		else if (((char**)tmp_tubes->content)[2][0] == '0' && !ft_strcmp(pos, \
+					((char**)tmp_tubes->content)[1]) && is_good_move(*path, \
+					((char**)tmp_tubes->content)[0], ant_hill))
+		{
+			if (!check_tubes2(ant_hill, path, paths, \
+						((char**)tmp_tubes->content)[0]))
 				return (0);
-			ft_lstaddend(path, new_pos);
-			get_paths(ant_hill, path, paths, ((char**)tmp_tubes->content)[1]);
-			free(*path);
-			*path = tmp_path;
 		}
 		tmp_tubes = tmp_tubes->next;
 	}

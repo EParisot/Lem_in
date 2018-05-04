@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:49:38 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 11:38:51 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		**parse_rooms(char *line)
 	return (parse_rooms_bis(line, tab));
 }
 
-static char	**parse_tubes_bis(char *line, char **tab)
+static char	**parse_tubes_bis(char *line, char **tab, int one_way)
 {
 	int		n;
 	int		i;
@@ -70,14 +70,16 @@ static char	**parse_tubes_bis(char *line, char **tab)
 		i++;
 		line++;
 	}
+	if (!(tab[i] = ft_itoa(one_way)))
+		return (NULL);
 	return (tab);
 }
 
-char		**parse_tubes(char *line)
+char		**parse_tubes(char *line, int one_way)
 {
 	char	**tab;
 
-	if (!(tab = (char**)malloc(2 * sizeof(char*))))
+	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
-	return (parse_tubes_bis(line, tab));
+	return (parse_tubes_bis(line, tab, one_way));
 }

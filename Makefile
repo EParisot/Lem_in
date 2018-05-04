@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/30 23:51:24 by eparisot         ###   ########.fr        #
+#    Updated: 2018/05/04 16:23:31 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,14 @@ NAME	=	lem-in
 SRCS	=	srcs/main.c \
 			srcs/read1.c \
 			srcs/read2.c \
+			srcs/read3.c \
 			srcs/parse.c \
 			srcs/check.c \
 			srcs/visu.c \
 			srcs/lem_in_init.c \
 			srcs/lem_in_algo.c \
 			srcs/lem_in_paths.c \
+			srcs/lem_in_paths2.c \
 			srcs/lem_in_exec.c \
 			srcs/lem_in_exec_tools.c \
 			GNL/get_next_line.c \

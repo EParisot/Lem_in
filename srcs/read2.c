@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/30 19:50:23 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 11:04:01 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,26 @@ static int	read2bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst)
 	return (1);
 }
 
+int			read2ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst)
+{
+	char		**tmp;
+	char		**tb;
+
+	tb = NULL;
+	if (!(tmp = (char **)malloc(sizeof(char *))))
+		return (0);
+	if (!ft_strcmp(line, "##one_way"))
+	{
+		get_next_line(0, tmp);
+		if (!(read3(ant_hill, *tmp, tmp_lst, tb)))
+			return (0);
+		save_instru(ant_hill, *tmp);
+		free(*tmp);
+	}
+	free(tmp);
+	return (1);
+}
+
 int			read2(t_ant_hill *ant_hill, char *line)
 {
 	t_list		*tmp_lst;
@@ -94,6 +114,8 @@ int			read2(t_ant_hill *ant_hill, char *line)
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (!read2bis(ant_hill, line, tmp_lst))
+			return (0);
+		if (!read2ter(ant_hill, line, tmp_lst))
 			return (0);
 	}
 	return (1);

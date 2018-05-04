@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 20:05:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:53:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	draw_dot(t_win *win, int x, int y)
 	SDL_RenderFillRect(win->renderer, &rect);
 }
 
-void		draw_line(t_win *win, int *coords)
+void		draw_line(t_win *win, int *coords, char *one_way)
 {
 	int			div;
 	t_2dvector	pos;
@@ -117,5 +117,5 @@ void		draw_line(t_win *win, int *coords)
 			sign_y = (int)pos.y + 10;
 		}
 	}
-	draw_sign(win, sign_x, sign_y);
+	(one_way[0] == '1') ? draw_sign(win, sign_x, sign_y) : 0;
 }

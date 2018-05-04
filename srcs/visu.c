@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 20:14:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 11:37:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static t_win	*visu_tubes(t_ant_hill *ant_hill, t_win *win)
 	{
 		max = get_max(ant_hill);
 		coords = get_coords(ant_hill, (char**)tmp->content, coords, max);
-		draw_line(win, coords);
+		draw_line(win, coords, ((char**)tmp->content)[2]);
 		tmp = tmp->next;
 		free(max);
 	}
