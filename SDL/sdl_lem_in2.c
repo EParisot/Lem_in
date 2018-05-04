@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 14:53:09 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 20:23:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,12 @@ int			draw_text(t_win *win, char **room, int *max)
 
 static void	draw_sign(t_win *win, int x, int y)
 {
-	static SDL_Surface	*surface;
-	SDL_Texture			*image;
 	SDL_Rect			rect;
 
-	image = NULL;
-	if (!(surface = SDL_LoadBMP("SDL/sign.bmp")))
-		return ;
-	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = x;
 	rect.y = y;
-	SDL_QueryTexture(image, NULL, NULL, &rect.w, &rect.h);
-	SDL_RenderCopy(win->renderer, image, NULL, &rect);
-	SDL_DestroyTexture(image);
-	SDL_FreeSurface(surface);
+	SDL_QueryTexture(win->sign, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(win->renderer, win->sign, NULL, &rect);
 }
 
 static void	draw_dot(t_win *win, int x, int y)

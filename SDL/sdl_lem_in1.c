@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 15:42:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 20:23:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	load_img(t_win *win)
 {
 	SDL_Surface	*surf1;
 	SDL_Surface	*surf2;
+	SDL_Surface	*surf3;
 
 	if (!(surf1 = SDL_LoadBMP("SDL/room.bmp")))
 		return (0);
@@ -24,6 +25,10 @@ static int	load_img(t_win *win)
 	if (!(surf2 = SDL_LoadBMP("SDL/ant.bmp")))
 		return (0);
 	if (!(win->ant = SDL_CreateTextureFromSurface(win->renderer, surf2)))
+		return (0);
+	if (!(surf3 = SDL_LoadBMP("SDL/sign.bmp")))
+		return (0);
+	if (!(win->sign = SDL_CreateTextureFromSurface(win->renderer, surf3)))
 		return (0);
 	return (1);
 }
@@ -92,6 +97,10 @@ void		w_destroy(t_win *win)
 	SDL_Delay(2000);
 	if (win)
 	{
+		SDL_DestroyTexture(win->sign);
+		SDL_DestroyTexture(win->room);
+		SDL_DestroyTexture(win->ant);
+		SDL_DestroyTexture(win->bg);
 		SDL_DestroyRenderer(win->renderer);
 		SDL_DestroyWindow(win->window);
 	}
