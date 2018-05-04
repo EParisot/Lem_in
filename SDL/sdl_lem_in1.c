@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 20:23:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/04 20:46:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void		w_destroy(t_win *win)
 	SDL_Delay(2000);
 	if (win)
 	{
+		SDL_SetRenderTarget(win->renderer, NULL);
+		SDL_RenderClear(win->renderer);
 		SDL_DestroyTexture(win->sign);
 		SDL_DestroyTexture(win->room);
 		SDL_DestroyTexture(win->ant);
