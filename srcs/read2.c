@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 11:04:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/08 18:44:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	read2_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 		char **tb)
 {
 	tb = parse_rooms(line);
-	if (!ant_hill->rooms->content)
+	if (!ant_hill->rooms)
 	{
 		if (!(ant_hill->rooms = ft_lstnew(tb, 3 * sizeof(char*))) \
 				|| line[0] == 'L')
