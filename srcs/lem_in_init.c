@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/03 18:49:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:46:16 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,26 @@ void			destroy_ants(t_list *ants)
 
 int				lem_in(t_ant_hill *ant_hill, int ac, char **av)
 {
-	if (ac > 1 && !ft_strcmp(av[1], "-v"))
+	if (ant_hill->ant_nb > 0 && ant_hill->start && ant_hill->end && \
+			ft_lstcount(ant_hill->rooms) >= 2 && ant_hill->tubes)
 	{
-		if (ant_hill->ant_nb > 0 && ant_hill->ant_nb < 100 && \
-				ant_hill->rooms && ft_lstcount(ant_hill->rooms) > 1 && \
-				ft_lstcount(ant_hill->rooms) < 80 && ant_hill->tubes && \
-				ant_hill->start && ant_hill->end)
+		if (ac > 1 && !ft_strcmp(av[1], "-v"))
 		{
-			if (!(ant_hill->win = visu(ant_hill, ant_hill->win)))
+			if (ant_hill->ant_nb < 100 && ft_lstcount(ant_hill->rooms) < 80)
 			{
-				ft_printf("SDL_ERROR\n");
-				return (0);
+				if (!(ant_hill->win = visu(ant_hill, ant_hill->win)))
+				{
+					ft_printf("SDL_ERROR\n");
+					return (0);
+				}
 			}
+			else
+				ft_printf("[-v] option ignored...\n");
 		}
-		else
-			ft_printf("[-v] option ignored...\n");
+		print_input(ant_hill);
+		if (!(init_ants(ant_hill)) || !(algo(ant_hill, ant_hill->win)))
+			return (0);
+		return (1);
 	}
-	print_input(ant_hill);
-	if (!(init_ants(ant_hill)) || !(algo(ant_hill, ant_hill->win)))
-		return (0);
-	return (1);
+	return (0);
 }

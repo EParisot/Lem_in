@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 22:20:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 12:07:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/08 17:39:56 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int			algo(t_ant_hill *ant_hill, t_win *win)
 	t_list	*path;
 
 	path = NULL;
-	if (!(shortcut(ant_hill, path)))
+	if (ant_hill->start && ant_hill->end && !(shortcut(ant_hill, path)))
 	{
 		if (!(get_paths(ant_hill, &path, &ant_hill->paths, ant_hill->start)) ||\
 				!ant_hill->paths)
@@ -123,11 +123,12 @@ int			algo(t_ant_hill *ant_hill, t_win *win)
 	}
 	if (win)
 		SDL_Delay(2000);
-	if (!exec(ant_hill))
-	{
-		ft_lstdel(&path, del1);
-		return (0);
-	}
+	if (ant_hill->paths)
+		if (!exec(ant_hill))
+		{
+			ft_lstdel(&path, del1);
+			return (0);
+		}
 	ft_lstdel(&path, del1);
 	return (1);
 }
