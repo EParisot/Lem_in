@@ -1,0 +1,36 @@
+5
+##start
+Hall 7 3
+##end
+Bocal 4 0
+Cluster1 7 2
+ADM 5 2
+Passage 5 3
+Kfet 3 3
+Babyfoot 1 3
+E0 1 2
+FoodTruck 3 2
+Cluster2 2 1
+TDM 6 1
+##one_way
+Passage-Hall
+Hall-Cluster1
+Cluster1-ADM
+ADM-Passage
+Passage-Kfet
+##one_way
+FoodTruck-Kfet
+Kfet-Babyfoot
+Babyfoot-E0
+E0-FoodTruck
+##one_way
+Cluster2-E0
+##one_way
+TDM-Cluster1
+##one_way
+TDM-ADM
+TDM-Cluster2
+Cluster2-FoodTruck
+##one_way
+Bocal-Cluster2
+TDM-Bocal
