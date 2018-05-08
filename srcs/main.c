@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/08 19:18:38 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/08 19:36:48 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int					main(int ac, char **av)
 	if (!check_ant_hill(ant_hill))
 		ft_printf("INPUT_ERROR\n");
 	if (!lem_in(ant_hill, ac, av))
-		ft_printf("NO_PATH_ERROR\n");
+		ft_printf("EXEC_ERROR\n");
 	del_ant_hill(ant_hill);
 	return (0);
 }
