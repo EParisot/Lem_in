@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:05:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 19:00:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:34:36 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		p_c(t_ant_hill *ant_hill, char **line)
 	{
 		if (!read_data(ant_hill, *line))
 			return (0);
+		free(*line);
 		get_next_line(0, line);
 	}
 	return (1);
