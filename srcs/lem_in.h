@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 18:12:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:21:34 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define ABS_MAX(x, y) ((abs(x) > abs(y)) ? abs(x) : abs(y))
 
 # include <SDL.h>
+# include <SDL_image.h>
 # include <SDL_ttf.h>
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"

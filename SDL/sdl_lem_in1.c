@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 19:43:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:24:42 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ static int	load_img(t_win *win)
 	SDL_Surface	*surf2;
 	SDL_Surface	*surf3;
 
-	if (!(surf1 = SDL_LoadBMP("SDL/room.bmp")))
+	if (!(surf1 = IMG_Load("SDL/room.bmp")))
 		return (0);
 	if (!(win->room = SDL_CreateTextureFromSurface(win->renderer, surf1)))
 		return (0);
-	if (!(surf2 = SDL_LoadBMP("SDL/ant.bmp")))
+	if (!(surf2 = IMG_Load("SDL/ant.bmp")))
 		return (0);
 	if (!(win->ant = SDL_CreateTextureFromSurface(win->renderer, surf2)))
 		return (0);
-	if (!(surf3 = SDL_LoadBMP("SDL/sign.bmp")))
+	if (!(surf3 = IMG_Load("SDL/sign.bmp")))
 		return (0);
 	if (!(win->sign = SDL_CreateTextureFromSurface(win->renderer, surf3)))
 		return (0);
@@ -66,7 +66,7 @@ int			w_clear(t_win *win)
 	SDL_Texture		*image;
 	SDL_Rect		rect;
 
-	if (!(surface = SDL_LoadBMP("SDL/minecraft.bmp")))
+	if (!(surface = IMG_Load("SDL/minecraft.bmp")))
 		return (0);
 	image = SDL_CreateTextureFromSurface(win->renderer, surface);
 	rect.x = 0;
