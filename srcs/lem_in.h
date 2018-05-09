@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:11:24 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/08 21:54:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 10:40:07 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int					read2(t_ant_hill *ant_hill, char *line);
 int					read3(t_ant_hill *ant_hill, char *tmp, t_list *tmp_lst, \
 		char **tb);
 int					room_exists(t_ant_hill *ant_hill, char **tb);
+int					tube_exists(t_ant_hill *ant_hill, char **tb);
 void				del1(void *content, size_t content_size);
 int					check_ant_hill(t_ant_hill *ant_hill);
 char				**parse_rooms(char *line);

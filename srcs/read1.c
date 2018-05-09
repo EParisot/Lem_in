@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/08 21:56:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 10:41:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	read1_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
 	}
-	else
+	else if (!tube_exists(ant_hill, tb))
 	{
 		if (!(tmp_lst = ft_lstnew(tb, 3 * sizeof(char*))))
 			return (0);
