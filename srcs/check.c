@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/08 18:52:25 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 22:45:29 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	check_a(t_ant_hill *ant_hill, t_list *tmp_tubes)
 			break ;
 		tmp_rooms = tmp_rooms->next;
 	}
-	if (ft_lstcount(ant_hill->rooms) <= 1)
+	if (ft_lstcount(ant_hill->rooms) <= 1 || !tmp_rooms)
 		return (0);
 	return (1);
 }
@@ -67,7 +67,7 @@ static int	check_b(t_ant_hill *ant_hill, t_list *tmp_tubes)
 			break ;
 		tmp_rooms = tmp_rooms->next;
 	}
-	if (ft_lstcount(ant_hill->rooms) <= 1)
+	if (ft_lstcount(ant_hill->rooms) <= 1 || !tmp_rooms)
 		return (0);
 	return (1);
 }
