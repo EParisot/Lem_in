@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 20:46:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:43:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,13 @@ int			draw(t_win *win, int x, int y, int w)
 void		w_destroy(t_win *win)
 {
 	SDL_Delay(2000);
-	if (win)
-	{
-		SDL_SetRenderTarget(win->renderer, NULL);
-		SDL_RenderClear(win->renderer);
-		SDL_DestroyTexture(win->sign);
-		SDL_DestroyTexture(win->room);
-		SDL_DestroyTexture(win->ant);
-		SDL_DestroyTexture(win->bg);
-		SDL_DestroyRenderer(win->renderer);
-		SDL_DestroyWindow(win->window);
-	}
-	SDL_Quit();
+	SDL_SetRenderTarget(win->renderer, NULL);
+	SDL_RenderClear(win->renderer);
+	SDL_DestroyTexture(win->sign);
+	SDL_DestroyTexture(win->room);
+	SDL_DestroyTexture(win->ant);
+	SDL_DestroyTexture(win->bg);
+	SDL_DestroyRenderer(win->renderer);
+	//SDL_DestroyWindow(win->window);
+	//SDL_Quit();
 }
