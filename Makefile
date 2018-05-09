@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/05/04 16:23:31 by eparisot         ###   ########.fr        #
+#    Updated: 2018/05/09 19:06:46 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LIBS	=	libft/libft.a \
 			`SDL2-config --libs` \
 			-lSDL2_ttf
 
-CFLAGS	=	-Wall -Wextra -Werror `sdl2-config --cflags`
+CFLAGS	=	-g3 -Wall -Wextra -Werror `sdl2-config --cflags`
 
 RM		=	rm -f
 

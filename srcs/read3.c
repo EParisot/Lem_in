@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:05:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 10:48:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 19:00:58 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int		read3(t_ant_hill *ant_hill, char *tmp, t_list *tmp_lst, char **tb)
 {
-	tb = parse_tubes(tmp, 1);
+	if (!(tb = parse_tubes(tmp, 1)))
+		return (0);
 	if (!ant_hill->tubes)
 	{
 		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
@@ -71,4 +72,15 @@ int		tube_exists(t_ant_hill *ant_hill, char **tb)
 		tmp = tmp->next;
 	}
 	return (0);
+}
+
+int		p_c(t_ant_hill *ant_hill, char **line)
+{
+	while (*line[0] == '#')
+	{
+		if (!read_data(ant_hill, *line))
+			return (0);
+		get_next_line(0, line);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 11:38:51 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/09 18:59:46 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ char		**parse_rooms(char *line)
 
 	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
-	return (parse_rooms_bis(line, tab));
+	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, ' ') && \
+			ft_strchr(line, ' ') != ft_strrchr(line, ' '))
+		return (parse_rooms_bis(line, tab));
+	else
+		return (NULL);
 }
 
 static char	**parse_tubes_bis(char *line, char **tab, int one_way)
@@ -81,5 +85,8 @@ char		**parse_tubes(char *line, int one_way)
 
 	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
-	return (parse_tubes_bis(line, tab, one_way));
+	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, '-'))
+		return (parse_tubes_bis(line, tab, one_way));
+	else
+		return (NULL);
 }
