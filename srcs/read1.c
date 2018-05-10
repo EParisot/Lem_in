@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/10 18:28:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:38:58 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ static int	read1_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 {
 	if (!(tb = parse_tubes(line, 0)))
 		return (0);
+	if (tb[0][0] == ' ' || tb[0][0] == '\t' || \
+			tb[1][0] == ' ' || tb[1][0] == '\t')
+		return (0);
 	if (!ant_hill->tubes)
 	{
 		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
@@ -65,7 +68,7 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 			!ft_strchr(line, ' ') && !ft_strchr(line, '-') && ft_is_int(line))
 		(ft_atoi(line) < 1000) ? ant_hill->ant_nb = ft_atoi(line) : 0;
 	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, ' ') && \
-			!ft_strchr(line, '-') && (line[0] != ' ' || line[0] != '\t'))
+			!ft_strchr(line, '-') && line[0] != ' ' && line[0] != '\t')
 	{
 		if (!(read1_bis(ant_hill, line, tmp_lst, tb)))
 			return (0);
@@ -107,11 +110,11 @@ int			read_data(t_ant_hill *ant_hill, char *line)
 	if (calls == 0 && line[0] != '#' && !ft_isdigit(line[0]))
 		return (0);
 	calls++;
-	if (!save_instru(ant_hill, line))
-		return (0);
 	if (!read1(ant_hill, line))
 		return (0);
 	if (!read2(ant_hill, line))
+		return (0);
+	if (!save_instru(ant_hill, line))
 		return (0);
 	return (1);
 }

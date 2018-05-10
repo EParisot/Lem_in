@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:05:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/10 12:33:45 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:38:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 int		read3(t_ant_hill *ant_hill, char *tmp, t_list *tmp_lst, char **tb)
 {
 	if (!(tb = parse_tubes(tmp, 1)))
+		return (0);
+	if (tb[0][0] == ' ' || tb[0][0] == '\t' || \
+			tb[1][0] == ' ' || tb[1][0] == '\t')
 		return (0);
 	if (!ant_hill->tubes)
 	{
