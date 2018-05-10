@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/04 20:23:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 11:34:50 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		draw_flag(t_win *win, int x, int y, int flag)
 	rect.y = y - 20;
 	rect.h = 20;
 	rect.w = 7;
-	SDL_SetRenderDrawColor(win->renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(win->renderer, 57, 38, 19, 255);
 	SDL_RenderFillRect(win->renderer, &rect);
 	rect.x = x + 7;
 	rect.y = y - 20;
