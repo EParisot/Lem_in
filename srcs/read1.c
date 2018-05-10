@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/10 13:29:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:21:15 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 	nb = NULL;
 	if (line[0] != '#' && line[0] != 'L' && ft_isdigit(line[0]) && \
 			!ft_strchr(line, ' ') && !ft_strchr(line, '-') && ft_is_int(line))
-		ant_hill->ant_nb = ft_atoi(line);
+		(ft_atoi(line) > 1000) ? ant_hill->ant_nb = ft_atoi(line) : 0;
 	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, ' ') && \
-			!ft_strchr(line, '-'))
+			!ft_strchr(line, '-') && (line[0] != ' ' || line[0] != '\t'))
 	{
 		if (!(read1_bis(ant_hill, line, tmp_lst, tb)))
 			return (0);

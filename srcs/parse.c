@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/10 12:49:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:12:47 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ char		**parse_tubes(char *line, int one_way)
 	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
 	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, '-') && \
-			!ft_strchr(line, ' '))
+			!ft_strchr(line, ' ') && ft_strlen(ft_strchr(line, '-')) > 1 && \
+			(ft_strchr(line, '-') == ft_strrchr(line, '-')))
 		return (parse_tubes_bis(line, tab, one_way));
 	else
 		return (NULL);
