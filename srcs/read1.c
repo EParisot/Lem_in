@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 15:53:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 13:29:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static int	read1_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 		char **tb)
 {
-	tb = parse_rooms(line);
+	if (!(tb = parse_rooms(line)))
+		return (0);
 	if (!ant_hill->rooms)
 	{
 		if (!(ant_hill->rooms = ft_lstnew(tb, 3 * sizeof(char*))))
@@ -34,7 +35,8 @@ static int	read1_bis(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 static int	read1_ter(t_ant_hill *ant_hill, char *line, t_list *tmp_lst, \
 		char **tb)
 {
-	tb = parse_tubes(line, 0);
+	if (!(tb = parse_tubes(line, 0)))
+		return (0);
 	if (!ant_hill->tubes)
 	{
 		if (!(ant_hill->tubes = ft_lstnew(tb, 3 * sizeof(char*))))
@@ -60,7 +62,7 @@ static int	read1(t_ant_hill *ant_hill, char *line)
 	tb = NULL;
 	nb = NULL;
 	if (line[0] != '#' && line[0] != 'L' && ft_isdigit(line[0]) && \
-			!ft_strchr(line, ' ') && !ft_strchr(line, '-'))
+			!ft_strchr(line, ' ') && !ft_strchr(line, '-') && ft_is_int(line))
 		ant_hill->ant_nb = ft_atoi(line);
 	else if (line[0] != '#' && line[0] != 'L' && ft_strchr(line, ' ') && \
 			!ft_strchr(line, '-'))

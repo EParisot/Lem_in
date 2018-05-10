@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/04 11:05:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 22:34:36 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 12:33:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int		p_c(t_ant_hill *ant_hill, char **line)
 {
 	while (*line[0] == '#')
 	{
+		if (!ft_strcmp(*line, "##start") || !ft_strcmp(*line, "##end"))
+			return (0);
 		if (!read_data(ant_hill, *line))
 			return (0);
 		free(*line);

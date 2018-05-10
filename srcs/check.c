@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 22:45:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 13:24:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	check_rooms(t_ant_hill *ant_hill)
 			while (--j >= 0)
 				if (!ft_isdigit(tmp[i][j]))
 					return (0);
+			if (!ft_is_int(tmp[i]))
+				return (0);
 			i--;
 		}
 		tmp_rooms = tmp_rooms->next;
@@ -96,6 +98,8 @@ int			check_ant_hill(t_ant_hill *ant_hill)
 	if (!check_rooms(ant_hill))
 		return (0);
 	if (!check_tubes(ant_hill))
+		return (0);
+	if (!ft_strcmp(ant_hill->start, ant_hill->end))
 		return (0);
 	return (1);
 }

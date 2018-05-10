@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 23:05:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 15:32:55 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int					main(int ac, char **av)
 		return (0);
 	while (get_next_line(0, line) > 0)
 	{
-		if (!read_data(ant_hill, *line) || !ft_strcmp(*line, ""))
+		if (!ft_strcmp(*line, "") || !read_data(ant_hill, *line))
 			break ;
 		free(*line);
 	}

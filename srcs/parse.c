@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/09 22:43:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/10 12:49:07 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static char	**parse_rooms_bis(char *line, char **tab)
 		i++;
 		line++;
 	}
+	if (!ft_isdigit(tab[1][0]) || !ft_isdigit(tab[2][0]) || !ft_is_int(tab[1]) \
+			|| !ft_is_int(tab[2]))
+		return (NULL);
 	return (tab);
 }
 
@@ -45,7 +48,7 @@ char		**parse_rooms(char *line)
 	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
 	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, ' ') && \
-			ft_strchr(line, ' ') != ft_strrchr(line, ' '))
+		ft_strchr(line, ' ') != ft_strrchr(line, ' ') && !ft_strchr(line, '-'))
 		return (parse_rooms_bis(line, tab));
 	else
 		return (NULL);
@@ -74,7 +77,7 @@ static char	**parse_tubes_bis(char *line, char **tab, int one_way)
 		i++;
 		line++;
 	}
-	if (!(tab[i] = ft_itoa(one_way)))
+	if (!ft_strcmp(tab[0], tab[1]) || !(tab[i] = ft_itoa(one_way)))
 		return (NULL);
 	return (tab);
 }
@@ -85,7 +88,8 @@ char		**parse_tubes(char *line, int one_way)
 
 	if (!(tab = (char**)malloc(3 * sizeof(char*))))
 		return (NULL);
-	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, '-'))
+	if (line[0] != 'L' && line[0] != '#' && ft_strchr(line, '-') && \
+			!ft_strchr(line, ' '))
 		return (parse_tubes_bis(line, tab, one_way));
 	else
 		return (NULL);
