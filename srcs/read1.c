@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 12:01:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/05/10 18:38:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/05/11 12:02:15 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ int			read_data(t_ant_hill *ant_hill, char *line)
 	calls++;
 	if (!read1(ant_hill, line))
 		return (0);
-	if (!read2(ant_hill, line))
-		return (0);
 	if (!save_instru(ant_hill, line))
+		return (0);
+	if (!read2(ant_hill, line))
 		return (0);
 	return (1);
 }
