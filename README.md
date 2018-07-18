@@ -4,7 +4,7 @@
 
 ![](Lemin.gif)
 
-## usage :
+## Usage :
 ```
 lem-in [-v] < file
 ```
